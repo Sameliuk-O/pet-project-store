@@ -2,6 +2,7 @@ import React from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { ILoginUser } from '../../interface';
 import { useLoginUserMutation } from '../../services/LoginServices';
@@ -11,6 +12,7 @@ const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useDispatch();
   const [requestLoginUser, { error }] = useLoginUserMutation();
+  const navigate = useNavigate();
   const onSubmit: SubmitHandler<ILoginUser> = async (value: ILoginUser) => {
     try {
       requestLoginUser({ password: value.password, username: value.username })
@@ -18,6 +20,7 @@ const LoginForm = () => {
         .then((res) => {
           dispatch(setLoginUser({ auth: true, token: res.token, username: value.username }));
         });
+      navigate('/');
     } catch {
       console.log(error);
     }
