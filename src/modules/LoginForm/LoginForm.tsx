@@ -10,10 +10,10 @@ import { setLoginUser } from '../../store/loginSlice';
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useDispatch();
-  const [myFunction, { error }] = useLoginUserMutation();
+  const [requestLoginUser, { error }] = useLoginUserMutation();
   const onSubmit: SubmitHandler<ILoginUser> = async (value: ILoginUser) => {
     try {
-      myFunction({ password: value.password, username: value.username })
+      requestLoginUser({ password: value.password, username: value.username })
         .unwrap()
         .then((res) => {
           dispatch(setLoginUser({ auth: true, token: res.token, username: value.username }));
