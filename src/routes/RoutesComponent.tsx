@@ -1,17 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
-
-import RegistrationPage from 'page/RegistrationPage/RegistrationPage';
-
-import HomePage from '../page/HomePage/HomePage';
-import LoginPage from '../page/LoginPage/LoginPage';
+import PrivateRouter from './PrivateRouter';
+import PublicRouter from './PublicRouter';
+import { useAppSelector } from '../hooks';
 const RoutesComponent = () => {
-  return (
-    <Routes>
-      <Route element={<HomePage />} path="/" />
-      <Route element={<RegistrationPage />} path="/registration" />
-      <Route element={<LoginPage />} path="/login" />
-    </Routes>
-  );
+  const auth = useAppSelector((state) => state.login.auth);
+  console.log(auth);
+  return auth ? <PrivateRouter /> : <PublicRouter />;
 };
 
 export default RoutesComponent;
