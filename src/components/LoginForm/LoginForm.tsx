@@ -26,7 +26,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={'flex justify-between'}>
+    <div className="flex justify-between">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="pr-4 text-base font-normal" htmlFor="username">
