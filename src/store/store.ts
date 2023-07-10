@@ -5,6 +5,7 @@ import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 
 import persistedReducer from './rootReducer';
 import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
+import { productSameCategory } from '../services/ProductSameCategory';
 import { productApi } from '../services/ProductServices';
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
       loginApi.middleware,
       productApi.middleware,
       allCategoryApi.middleware,
+      productSameCategory.middleware,
     ];
 
     const middlewareConfig = {
