@@ -1,16 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import LoginPage from '../page/LoginPage/LoginPage';
-import RegistrationPage from '../page/RegistrationPage/RegistrationPage';
-
-const PublicRouter = () => {
+import LoginPage from 'page/LoginPage/LoginPage';
+const App: React.FC = () => {
   return (
     <Routes>
-      <Route element={<RegistrationPage />} path="/registration" />
       <Route element={<LoginPage />} path="/login" />
-      <Route element={<LoginPage />} path="*" />
+      <Route element={<Navigate to="/login" replace />} path="/*" />
     </Routes>
   );
 };
 
-export default PublicRouter;
+export default App;

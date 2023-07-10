@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import PrivateLayout from '../layouts/PrivateLayout/PrivateLayout';
-import SideLayout from '../layouts/SideLayout/SideLayout';
+import PrivateLayout from 'layouts/PrivateLayout/PrivateLayout';
+import SideLayout from 'layouts/SideLayout/SideLayout';
+
 import HomePage from '../page/HomePage/HomePage';
 
 const PrivateRouter = () => {
@@ -12,7 +13,7 @@ const PrivateRouter = () => {
         <SideLayout />
         <Routes>
           <Route element={<HomePage />} path="/" />;
-          <Route element={<HomePage />} path="*" />;
+          <Route element={<Navigate to="/" replace />} path="/*" />
         </Routes>
       </div>
     </>
