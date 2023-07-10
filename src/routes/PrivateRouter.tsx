@@ -10,7 +10,7 @@ const PrivateRouter = () => {
   return (
     <>
       <PrivateLayout />
-      <div className="flex justify-around">
+      <div className="flex justify-items-start">
         <SideLayout />
         <Routes>
           <Route element={<HomePage />} path="/" />;

@@ -2,7 +2,7 @@ import Category from '../../components/Category/Category';
 
 const SideLayout = () => {
   return (
-    <div className="bg-slate-200 p-10">
+    <div className={'h-screen min-w-[20%] bg-slate-200 p-10'}>
       <Category />
     </div>
   );
