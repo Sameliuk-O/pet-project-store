@@ -9,7 +9,7 @@ const Category = () => {
       <p>Category</p>
       <ul>
         {data?.map((el, index) => (
-          <li key={index}>
+          <li key={el + index}>
             <Link to={`/store/category/${el}`}>{el}</Link>
           </li>
         ))}
