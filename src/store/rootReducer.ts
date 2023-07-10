@@ -1,4 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import loginReducer from './loginSlice';
 import { allCategoryApi } from '../services/AllCategoryServices';
@@ -12,4 +14,10 @@ const rootReducer = combineReducers({
   [allCategoryApi.reducerPath]: allCategoryApi.reducer,
 });
 
-export default rootReducer;
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+export default persistedReducer;

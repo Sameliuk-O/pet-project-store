@@ -1,12 +1,19 @@
+import { Link } from 'react-router-dom';
+
 import { useAllCategoryQuery } from '../../services/AllCategoryServices';
 
 const Category = () => {
   const { data } = useAllCategoryQuery();
-  console.log(data);
   return (
     <div>
       <p>Category</p>
-      <div>1</div>
+      <ul>
+        {data?.map((el, index) => (
+          <li key={index}>
+            <Link to={`/store/category/${el}`}>{el}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
