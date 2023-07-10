@@ -1,17 +1,16 @@
-import React from 'react';
-
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+
+import { useAppDispatch } from 'hooks';
 
 import { ILoginUser } from '../../interface';
 import { useLoginUserMutation } from '../../services/LoginServices';
 import { setLoginUser } from '../../store/loginSlice';
-
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [requestLoginUser, { error }] = useLoginUserMutation();
-  const onSubmit: SubmitHandler<ILoginUser> = async (value: ILoginUser) => {
+
+  const onSubmit: SubmitHandler<ILoginUser> = (value: ILoginUser) => {
     try {
       requestLoginUser({ password: value.password, username: value.username })
         .unwrap()
