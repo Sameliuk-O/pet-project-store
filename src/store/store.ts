@@ -2,12 +2,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import rootReducer from './rootReducer';
+import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
 import { productApi } from '../services/ProductServices';
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([loginApi.middleware, productApi.middleware]);
+    return getDefaultMiddleware().concat([
+      loginApi.middleware,
+      productApi.middleware,
+      allCategoryApi.middleware,
+    ]);
   },
   reducer: rootReducer,
 });

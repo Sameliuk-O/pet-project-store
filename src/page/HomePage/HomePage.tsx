@@ -1,4 +1,5 @@
-import ProductCard from '../../components/ProductCard/ProductCard';
+import ProductCard from 'components/ProductCard/ProductCard';
+
 import { useAllProductQuery } from '../../services/ProductServices';
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
               description={el.description}
               id={el.id}
               image={el.image}
+              key={el.id}
               price={el.price}
               rating={el.rating}
               title={el.title}

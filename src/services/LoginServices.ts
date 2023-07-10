@@ -6,8 +6,8 @@ export const loginApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
   endpoints: (build) => ({
     loginUser: build.mutation<IToken, ILoginUser>({
-      query: (data) => ({
-        body: data,
+      query: (body) => ({
+        body,
         method: 'POST',
         url: `/auth/login`,
       }),
