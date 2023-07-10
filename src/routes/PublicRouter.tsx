@@ -4,8 +4,8 @@ import LoginPage from 'page/LoginPage/LoginPage';
 const App: React.FC = () => {
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/*" element={<Navigate to="/login" replace />} />
+      <Route element={<LoginPage />} path="/login" />
+      <Route element={<Navigate to="/login" replace />} path="/*" />
     </Routes>
   );
 };

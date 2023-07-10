@@ -3,11 +3,11 @@ export interface ILoginUser {
   username: string;
 }
 
-export interface LoginState extends ILoginUser{
+export interface LoginState extends ILoginUser {
   auth?: boolean;
   token: string;
 }
 
-export interface IToken{
+export interface IToken {
   token: string;
 }

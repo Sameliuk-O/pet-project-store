@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useAppDispatch } from 'hooks';
@@ -5,6 +7,7 @@ import { useAppDispatch } from 'hooks';
 import { ILoginUser } from '../../interface';
 import { useLoginUserMutation } from '../../services/LoginServices';
 import { setLoginUser } from '../../store/loginSlice';
+
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useAppDispatch();
@@ -23,7 +26,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className={'flex justify-between'}>
+    <div className="flex justify-between">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="pr-4 text-base font-normal" htmlFor="username">
