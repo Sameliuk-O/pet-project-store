@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import loginReducer from './loginSlice';
+import { addProductCart } from '../services/AddProductCart';
 import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
 import { productSameCategory } from '../services/ProductSameCategory';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   [allCategoryApi.reducerPath]: allCategoryApi.reducer,
   [productSameCategory.reducerPath]: productSameCategory.reducer,
   [productCard.reducerPath]: productCard.reducer,
+  [addProductCart.reducerPath]: addProductCart.reducer,
 });
 
 const persistConfig = {

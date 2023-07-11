@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 
 import persistedReducer from './rootReducer';
+import { addProductCart } from '../services/AddProductCart';
 import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
 import { productSameCategory } from '../services/ProductSameCategory';
@@ -17,6 +18,7 @@ const store = configureStore({
       allCategoryApi.middleware,
       productSameCategory.middleware,
       productCard.middleware,
+      addProductCart.middleware,
     ];
 
     const middlewareConfig = {
