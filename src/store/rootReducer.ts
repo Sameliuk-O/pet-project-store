@@ -6,14 +6,16 @@ import loginReducer from './loginSlice';
 import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
 import { productSameCategory } from '../services/ProductSameCategory';
-import { productApi } from '../services/ProductServices';
+import { productCard } from '../services/ProductServices';
+import { productsApi } from '../services/ProductsServices';
 
 const rootReducer = combineReducers({
   login: loginReducer,
   [loginApi.reducerPath]: loginApi.reducer,
-  [productApi.reducerPath]: productApi.reducer,
+  [productsApi.reducerPath]: productsApi.reducer,
   [allCategoryApi.reducerPath]: allCategoryApi.reducer,
   [productSameCategory.reducerPath]: productSameCategory.reducer,
+  [productCard.reducerPath]: productCard.reducer,
 });
 
 const persistConfig = {

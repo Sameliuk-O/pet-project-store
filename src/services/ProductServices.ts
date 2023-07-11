@@ -2,16 +2,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { IProduct } from '../interface/IProduct';
 
-export const productApi = createApi({
+export const productCard = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
   endpoints: (build) => ({
-    allProduct: build.query<IProduct[], void>({
-      query: () => ({
-        url: '/products',
+    getProductCard: build.query<IProduct, string | undefined>({
+      query: (productId) => ({
+        url: `/products/${productId}`,
       }),
     }),
   }),
-  reducerPath: 'productApi',
+  reducerPath: 'productCard',
 });
 
-export const { useAllProductQuery } = productApi;
+export const { useGetProductCardQuery } = productCard;

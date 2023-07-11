@@ -8,7 +8,7 @@ const CategoryProducts: React.FC = () => {
 
   return (
     <div>
-      <ul className={'mx-10 my-5 grid grid-cols-5 '}>
+      <ul className="mx-10 my-5 grid grid-cols-5">
         {data?.map((el) => (
           <ProductCard
             category={el.category}

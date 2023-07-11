@@ -9,13 +9,13 @@ const Category = () => {
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));
 
   return (
-    <div>
+    <div className="h-full">
       <p className="pb-2 text-lg text-sky-500">Category</p>
       <ul>
         {data?.map((el, index) => (
-          <div>
+          <div key={el + index}>
             {el === decodedString ? (
-              <li className="pb-1 underline decoration-sky-500" key={el + index}>
+              <li className="pb-1 underline decoration-sky-500">
                 <Link className="text-sky-500" to={`/store/category/${el}`}>
                   {el.charAt(0).toUpperCase() + el.slice(1)}
                 </Link>
