@@ -6,15 +6,17 @@ import persistedReducer from './rootReducer';
 import { allCategoryApi } from '../services/AllCategoryServices';
 import { loginApi } from '../services/LoginServices';
 import { productSameCategory } from '../services/ProductSameCategory';
-import { productApi } from '../services/ProductServices';
+import { productCard } from '../services/ProductServices';
+import { productsApi } from '../services/ProductsServices';
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     const customMiddleware = [
       loginApi.middleware,
-      productApi.middleware,
+      productsApi.middleware,
       allCategoryApi.middleware,
       productSameCategory.middleware,
+      productCard.middleware,
     ];
 
     const middlewareConfig = {

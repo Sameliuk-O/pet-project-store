@@ -5,16 +5,18 @@ import SideLayout from 'layouts/SideLayout/SideLayout';
 
 import CategoryProducts from '../page/CategoryProducts/CategoryProducts';
 import HomePage from '../page/HomePage/HomePage';
+import Product from '../page/Product/Product';
 
 const PrivateRouter = () => {
   return (
     <>
       <PrivateLayout />
-      <div className="flex justify-items-start">
+      <div className="flex h-screen">
         <SideLayout />
         <Routes>
           <Route element={<HomePage />} path="/" />;
           <Route element={<CategoryProducts />} path="/store/category/:parameter" />;
+          <Route element={<Product />} path="/store/:productId" />
           <Route element={<Navigate to="/" replace />} path="/*" />
         </Routes>
       </div>

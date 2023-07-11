@@ -1,13 +1,13 @@
 import ProductCard from 'components/ProductCard/ProductCard';
 
-import { useAllProductQuery } from '../../services/ProductServices';
+import { useAllProductQuery } from '../../services/ProductsServices';
 
 const HomePage = () => {
   const { data } = useAllProductQuery();
 
   return (
     <div>
-      <ul className={'mx-10 my-5 grid grid-cols-5 '}>
+      <ul className="mx-10 my-5 grid grid-cols-5">
         {data?.length ? (
           data.map((el) => (
             <ProductCard
