@@ -5,20 +5,25 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from 'hooks';
 
 import { ILoginUser } from '../../interface';
+import { useGetAllUserQuery } from '../../services/GetAllUser';
 import { useLoginUserMutation } from '../../services/LoginServices';
 import { setLoginUser } from '../../store/loginSlice';
+import { setCurrentUser } from '../../store/userSlice';
 
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useAppDispatch();
+  const { data } = useGetAllUserQuery();
   const [requestLoginUser, { error }] = useLoginUserMutation();
 
   const onSubmit: SubmitHandler<ILoginUser> = (value: ILoginUser) => {
+    const user = data?.find((el) => el.username === value.username);
     try {
       requestLoginUser({ password: value.password, username: value.username })
         .unwrap()
         .then((res) => {
           dispatch(setLoginUser({ auth: true, token: res.token, username: value.username }));
+          user != undefined ? dispatch(setCurrentUser(user)) : console.log(error);
         });
     } catch {
       console.log(error);

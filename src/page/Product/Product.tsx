@@ -3,13 +3,30 @@ import { Link } from 'react-router-dom';
 import { Rating } from 'components/Rating/Rating';
 
 import useLastPath from '../../hooks/useLastPath';
+import { useAddProductCartMutation } from '../../services/AddProductCart';
 import { useGetProductCardQuery } from '../../services/ProductServices';
 import HomeSvg from '../../svg/homepage-icon.svg';
 
 const Product = () => {
   const productPath = useLastPath();
-
+  const [requestAddProductCart, { error }] = useAddProductCartMutation();
   const { data } = useGetProductCardQuery(productPath);
+  const handleClick = () => {
+    try {
+      requestAddProductCart({
+        data: '2020-02-03',
+        products: { productId: 1, quantity: 1 },
+        userId: 1,
+      })
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+        });
+    } catch {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="flex pl-5 pt-5">
@@ -33,7 +50,10 @@ const Product = () => {
             <Rating rating={data?.rating.rate} />
           </div>
           <div className="flex justify-center pt-5">
-            <button className="rounded-lg bg-sky-400 p-3 text-gray-50 hover:bg-sky-500">
+            <button
+              className="rounded-lg bg-sky-400 p-3 text-gray-50 hover:bg-sky-500"
+              onClick={handleClick}
+            >
               Buy now {data?.price}$
             </button>
           </div>
