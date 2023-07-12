@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import ShoppingBox from '../../components/ShoppingBox/ShoppingBox';
+import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import { useAppDispatch } from '../../hooks';
 import { setLoginUser } from '../../store/loginSlice';
 
@@ -18,6 +19,7 @@ const PrivateLayout = () => {
       <NavLink to="/">STORE</NavLink>
       <div className="flex">
         <ShoppingBox counter={5} />
+        <UserAvatar />
         <NavLink
           className="ml-16 rounded-lg bg-sky-400 p-1 text-sm"
           to="/login"
