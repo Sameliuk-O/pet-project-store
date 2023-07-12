@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+
+import { NavLink } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useGetAllUserQuery } from '../../services/GetAllUser';
 import { setCurrentUser } from '../../store/userSlice';
@@ -6,23 +10,22 @@ const UserAvatar: React.FC = () => {
   const userName = useAppSelector((state) => state.login.username);
   const firstLaterUserName = userName.charAt(0).toUpperCase();
   const dispatch = useAppDispatch();
-  const { data } = useGetAllUserQuery();
+  const { data, error } = useGetAllUserQuery();
   const currentUser = () => {
-    data?.map((el) => {
-      if (el.username === userName) {
-        dispatch(setCurrentUser(el));
-      } else {
-        console.log('No user found ');
-      }
-    });
+    const user = data?.find((el) => el.username === userName);
+    user != undefined ? dispatch(setCurrentUser(user)) : console.log(error);
   };
 
-  currentUser();
+  useEffect(() => {
+    currentUser();
+  });
 
   return (
-    <div className="rounded-full bg-amber-400 px-5 py-2">
-      <p>{firstLaterUserName}</p>
-    </div>
+    <NavLink to={'/user'}>
+      <div className="rounded-full bg-amber-400 px-5 py-3">
+        <p className="first-letter:uppercase">{firstLaterUserName}</p>
+      </div>
+    </NavLink>
   );
 };
 
