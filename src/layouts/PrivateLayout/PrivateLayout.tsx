@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import ShoppingBox from '../../components/ShoppingBox/ShoppingBox';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
@@ -7,11 +7,11 @@ import { setLoginUser } from '../../store/loginSlice';
 
 const PrivateLayout = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogOut = () => {
     dispatch(setLoginUser({ auth: false, token: '', username: '' }));
-    navigate('/login');
+    // navigate('/login');
   };
 
   return (
