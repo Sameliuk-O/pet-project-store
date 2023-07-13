@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLastPath } from 'hooks';
 import { useGetAllCategoryQuery } from 'services/productServices';
 
-const Category = () => {
+const Category: React.FC = () => {
   const { data } = useGetAllCategoryQuery();
   const categoryPath = useLastPath();
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));

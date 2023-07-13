@@ -12,7 +12,7 @@ const PrivateRouter = () => {
   return (
     <>
       <PrivateLayout />
-      <div className="flex h-screen">
+      <div className="flex min-h-screen">
         <SideLayout />
         <Routes>
           <Route element={<HomePage />} path="/" />;

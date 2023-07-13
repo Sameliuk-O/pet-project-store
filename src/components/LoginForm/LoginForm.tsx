@@ -9,12 +9,13 @@ import { ILoginUser } from '../../interface';
 import { useLoginUserMutation } from '../../services/authServices';
 import { setLoginUser } from '../../store/authSlice';
 import { setCurrentUser } from '../../store/userSlice';
+import { Loading } from '../Loading';
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useAppDispatch();
   const { data } = useGetAllUsersQuery();
-  const [requestLoginUser, { error }] = useLoginUserMutation();
+  const [requestLoginUser, { isLoading, error }] = useLoginUserMutation();
 
   const onSubmit: SubmitHandler<ILoginUser> = (value: ILoginUser) => {
     const user = data?.find((el) => el.username === value.username);
@@ -31,33 +32,42 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex justify-between">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label className="pr-4 text-base font-normal" htmlFor="username">
-            User Name
-          </label>
-          <input
-            placeholder="username"
-            type="text"
-            {...register('username', { maxLength: 80, required: true })}
-            className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
-          />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="rounded-lg border-2 border-gray-300 bg-gray-200 p-4">
+          <h1>Login</h1>
+          <div className="flex justify-between">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <label className="pr-4 text-base font-normal" htmlFor="username">
+                  User Name
+                </label>
+                <input
+                  placeholder="username"
+                  type="text"
+                  {...register('username', { maxLength: 80, required: true })}
+                  className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
+                />
+              </div>
+              <div className="flex justify-between">
+                <label className="pr-4 text-base font-normal" htmlFor="password">
+                  Password
+                </label>
+                <input
+                  placeholder="password"
+                  type="password"
+                  {...register('password', { maxLength: 12, minLength: 5, required: true })}
+                  className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
+                />
+              </div>
+              <input type="submit" />
+            </form>
+          </div>
         </div>
-        <div className="flex justify-between">
-          <label className="pr-4 text-base font-normal" htmlFor="password">
-            Password
-          </label>
-          <input
-            placeholder="password"
-            type="password"
-            {...register('password', { maxLength: 12, minLength: 5, required: true })}
-            className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
-          />
-        </div>
-        <input type="submit" />
-      </form>
-    </div>
+      )}
+    </>
   );
 };
 
