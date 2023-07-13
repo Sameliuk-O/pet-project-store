@@ -20,7 +20,7 @@ const ProductInBasket: React.FC<IProductInBasket> = ({ image, price, title, quan
         <img alt={title} className="h-20 w-24" src={image} />
       </div>
       <div className="col-span-3 flex justify-center">
-        <p>{title}</p>
+        <p className="px-5">{title}</p>
       </div>
       <div className="col-span-1 flex justify-center">
         <p className="pr-3">
@@ -31,8 +31,13 @@ const ProductInBasket: React.FC<IProductInBasket> = ({ image, price, title, quan
       <div className="col-span-1 flex justify-center">
         <p>Price: {price}</p>
       </div>
-      <div className="col-span-1">
-        <button onClick={() => handleDeleteClick(id)}>Delete</button>
+      <div className="col-span-1 px-5">
+        <button
+          className="rounded-lg bg-gray-400 px-5 py-2 text-stone-50 hover:bg-gray-500"
+          onClick={() => handleDeleteClick(id)}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

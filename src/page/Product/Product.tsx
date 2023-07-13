@@ -8,9 +8,8 @@ import { Link } from 'react-router-dom';
 import { addProduct } from 'store/productSlice';
 
 import { Loading } from '../../components/Loading';
-import Notification from '../../components/Notification/Notification';
 import { Rating } from '../../components/Rating';
-import { useAppDispatch, useAppSelector, useLastPath, useNotification } from '../../hooks';
+import { useAppDispatch, useAppSelector, useLastPath } from '../../hooks';
 import { IGetProduct } from '../../interface';
 import { useAddProductCartMutation, useGetProductCardQuery } from '../../services/productServices';
 import HomeSvg from '../../svg/homepage-icon.svg';
@@ -25,7 +24,6 @@ const Product: React.FC = () => {
   const productsInCart = useAppSelector((state) => state.productCart);
   const [counter, setCounter] = useState(1);
   const [isProductInCart, setIsProductInCart] = useState(false);
-  const { notification, showNotification } = useNotification();
   const handleClick = async () => {
     if (productData.data) {
       const res: {
@@ -67,16 +65,13 @@ const Product: React.FC = () => {
       setIsProductInCart(true);
     }
   }, [productsInCart?.product]);
-
-  const increase = () => {
-    setCounter((count) => count + 1);
-  };
-
-  const decrease = () => {
-    if (counter > 1) {
-      setCounter((count) => count - 1);
+  const handleCounter = (value: string) => {
+    if (value === '+') {
+      setCounter((count) => count + 1);
     } else {
-      showNotification(`${error}`, 5000);
+      if (counter > 1) {
+        setCounter((count) => count - 1);
+      }
     }
   };
 
@@ -116,14 +111,14 @@ const Product: React.FC = () => {
               <div className="flex justify-center pt-10">
                 <button
                   className="mr-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
-                  onClick={decrease}
+                  onClick={() => handleCounter('-')}
                 >
                   -
                 </button>
                 <p className="py-1">{counter}</p>
                 <button
                   className="ml-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
-                  onClick={increase}
+                  onClick={() => handleCounter('+')}
                 >
                   +
                 </button>
@@ -150,7 +145,6 @@ const Product: React.FC = () => {
               </div>
             </div>
           </div>
-          {notification && <Notification value={notification} />}
         </div>
       )}
     </div>
