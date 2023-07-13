@@ -1,5 +1,6 @@
 export interface IAddProduct {
-  data: string;
+  date: string;
+
   products: {
     productId: number;
     quantity: number;
@@ -9,4 +10,12 @@ export interface IAddProduct {
 
 export interface IGetProduct extends IAddProduct {
   id: number;
+}
+
+export interface IAddProductInBasket extends IAddProduct {
+  productInfo?: {
+    image: string;
+    price: string;
+    title: string;
+  };
 }
