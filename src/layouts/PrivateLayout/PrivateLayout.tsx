@@ -16,7 +16,9 @@ const PrivateLayout: React.FC = () => {
 
   return (
     <div className="flex justify-between border-b-2 border-solid border-slate-300 bg-slate-200 p-5 pl-24 pr-10">
-      <NavLink to="/">STORE</NavLink>
+      <NavLink className="flex items-center text-2xl font-bold text-zinc-700" to="/">
+        STORE
+      </NavLink>
       <div className="flex">
         <ShoppingBox counter={product.product.length} />
         <UserAvatar />
