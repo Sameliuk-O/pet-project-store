@@ -3,26 +3,25 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 
 import persistedReducer from './rootReducer';
-import { addProductCart } from '../services/AddProductCart';
-import { allCategoryApi } from '../services/AllCategoryServices';
-import { getAllUser } from '../services/GetAllUser';
-import { userCart } from '../services/GetUserCart';
-import { loginApi } from '../services/LoginServices';
-import { productSameCategory } from '../services/ProductSameCategory';
-import { productCard } from '../services/ProductServices';
-import { productsApi } from '../services/ProductsServices';
+// import { addProductCart } from '../services/AddProductCart';
+// import { allCategoryApi } from '../services/AllCategoryServices';
+import { authApi } from '../services/authServices';
+import { productServices } from '../services/productServices';
+import { userServices } from '../services/usersServices';
+// import { productSameCategory } from '../services/ProductSameCategory';
+// import { productsApi } from '../services/ProductsServices';
 
 const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     const customMiddleware = [
-      loginApi.middleware,
-      productsApi.middleware,
-      allCategoryApi.middleware,
-      productSameCategory.middleware,
-      productCard.middleware,
-      addProductCart.middleware,
-      getAllUser.middleware,
-      userCart.middleware,
+      authApi.middleware,
+      // productsApi.middleware,
+      // allCategoryApi.middleware,
+      // productSameCategory.middleware,
+      productServices.middleware,
+      // addProductCart.middleware,
+      // getAllUser.middleware,
+      userServices.middleware,
     ];
 
     const middlewareConfig = {

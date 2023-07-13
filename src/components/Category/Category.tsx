@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import useLastPath from '../../hooks/useLastPath';
-import { useAllCategoryQuery } from '../../services/AllCategoryServices';
+import { useLastPath } from 'hooks';
+import { useGetAllCategoryQuery } from 'services/productServices';
 
 const Category = () => {
-  const { data } = useAllCategoryQuery();
+  const { data } = useGetAllCategoryQuery();
   const categoryPath = useLastPath();
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));
 

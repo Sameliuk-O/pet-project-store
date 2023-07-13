@@ -1,1 +1,1 @@
-export const HTTP = 'https://fakestoreapi.com';
+export const HTTPParameters = 'https://fakestoreapi.com';

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
+import { PopUpBasket } from 'components/BasketPopUp';
+
 import Shopping from '../../svg/shopping.svg';
-import PopUpBasket from '../BasketPopUp/PopUpBasket';
 
 interface ICounter {
   counter: number;

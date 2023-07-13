@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 
 const UserAvatar: React.FC = () => {
-  const userName = useAppSelector((state) => state.login.username);
+  const userName = useAppSelector((state) => state.auth.username);
   const firstLaterUserName = userName.charAt(0).toUpperCase();
 
   return (

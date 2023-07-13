@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import PrivateLayout from 'layouts/PrivateLayout/PrivateLayout';
-import SideLayout from 'layouts/SideLayout/SideLayout';
+import { PrivateLayout } from 'layouts/PrivateLayout';
 import User from 'page/User/User';
 
+import { SideLayout } from '../layouts/SideLayout';
 import CategoryProducts from '../page/CategoryProducts/CategoryProducts';
 import HomePage from '../page/HomePage/HomePage';
 import Product from '../page/Product/Product';

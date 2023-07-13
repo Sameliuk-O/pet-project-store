@@ -1,9 +1,8 @@
 import ProductCard from 'components/ProductCard/ProductCard';
-
-import { useAllProductQuery } from '../../services/ProductsServices';
+import { useGetAllProductQuery } from 'services/productServices';
 
 const HomePage = () => {
-  const { data } = useAllProductQuery();
+  const { data } = useGetAllProductQuery();
 
   return (
     <div>

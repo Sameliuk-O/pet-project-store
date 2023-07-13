@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-import { IProduct } from '../../interface/IProduct';
-import { Rating } from '../Rating/Rating';
+import { IProduct } from 'interface';
+
+import { Rating } from '../Rating';
 
 const ProductCard: React.FC<IProduct> = ({ id, image, price, rating, title }: IProduct) => {
   const navigate = useNavigate();

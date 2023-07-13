@@ -1,6 +1,6 @@
-import ProductCard from '../../components/ProductCard/ProductCard';
-import useLastPath from '../../hooks/useLastPath';
-import { useGetProductSameCategoryQuery } from '../../services/ProductSameCategory';
+import { ProductCard } from 'components/ProductCard';
+import { useLastPath } from 'hooks';
+import { useGetProductSameCategoryQuery } from 'services/productServices';
 
 const CategoryProducts: React.FC = () => {
   const categoryPath = useLastPath();

@@ -5,16 +5,13 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import { Rating } from 'components/Rating/Rating';
-import useNotification from 'hooks/useNotification';
 import { addProduct } from 'store/productSlice';
 
 import Notification from '../../components/Notification/Notification';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import useLastPath from '../../hooks/useLastPath';
+import { Rating } from '../../components/Rating';
+import { useAppDispatch, useAppSelector, useLastPath, useNotification } from '../../hooks';
 import { IGetProduct } from '../../interface';
-import { useAddProductCartMutation } from '../../services/AddProductCart';
-import { useGetProductCardQuery } from '../../services/ProductServices';
+import { useAddProductCartMutation, useGetProductCardQuery } from '../../services/productServices';
 import HomeSvg from '../../svg/homepage-icon.svg';
 
 const Product = () => {
