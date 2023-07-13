@@ -2,7 +2,10 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { userCart } from 'services/GetUserCart';
+
 import loginReducer from './loginSlice';
+import productSlice from './productSlice';
 import userReducer from './userSlice';
 import { addProductCart } from '../services/AddProductCart';
 import { allCategoryApi } from '../services/AllCategoryServices';
@@ -15,6 +18,7 @@ import { productsApi } from '../services/ProductsServices';
 const rootReducer = combineReducers({
   currentUser: userReducer,
   login: loginReducer,
+  productCart: productSlice,
   [loginApi.reducerPath]: loginApi.reducer,
   [productsApi.reducerPath]: productsApi.reducer,
   [allCategoryApi.reducerPath]: allCategoryApi.reducer,
@@ -22,6 +26,7 @@ const rootReducer = combineReducers({
   [productCard.reducerPath]: productCard.reducer,
   [addProductCart.reducerPath]: addProductCart.reducer,
   [getAllUser.reducerPath]: getAllUser.reducer,
+  [userCart.reducerPath]: userCart.reducer,
 });
 
 const persistConfig = {
