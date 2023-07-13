@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useNotification = (): {
+export const useNotification = (): {
   notification: string | null;
   showNotification: (message: string, duration?: number) => void;
 } => {
@@ -24,5 +24,3 @@ const useNotification = (): {
 
   return { notification, showNotification };
 };
-
-export default useNotification;

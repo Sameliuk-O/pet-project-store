@@ -8,9 +8,9 @@ const initialState: LoginState = {
   username: '',
 };
 
-const loginSlice = createSlice({
+const authSlice = createSlice({
   initialState,
-  name: 'login',
+  name: 'auth',
   reducers: {
     setLoginUser: (state, action: PayloadAction<LoginState>) => {
       state.token = action.payload.token;
@@ -20,5 +20,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setLoginUser } = loginSlice.actions;
-export default loginSlice.reducer;
+export const { setLoginUser } = authSlice.actions;
+export default authSlice.reducer;

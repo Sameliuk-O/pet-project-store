@@ -1,9 +1,9 @@
-import UserInformation from '../../components/UserInformation/UserInformation';
+import { UserInformation } from 'components/UserInformation';
+
 import { useAppSelector } from '../../hooks';
 
 const User: React.FC = () => {
   const currentUser = useAppSelector((store) => store.currentUser);
-  console.log(currentUser);
   return (
     <div className="ml-10 mt-10">
       <div className="flex">

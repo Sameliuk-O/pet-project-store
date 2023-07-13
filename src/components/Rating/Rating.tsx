@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface RatingProps {
   rating: string | undefined;
 }
-export const Rating: React.FC<RatingProps> = ({ rating }) => {
+const Rating: React.FC<RatingProps> = ({ rating }) => {
   const MAX_RATING = 5;
   const ratingNumber = Number(rating);
   const filledStars = Math.floor(ratingNumber);
@@ -29,3 +29,5 @@ export const Rating: React.FC<RatingProps> = ({ rating }) => {
 
   return <div>{renderStars()}</div>;
 };
+
+export default Rating;

@@ -3,17 +3,17 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useAppDispatch } from 'hooks';
+import { useGetAllUsersQuery } from 'services/usersServices';
 
 import { ILoginUser } from '../../interface';
-import { useGetAllUserQuery } from '../../services/GetAllUser';
-import { useLoginUserMutation } from '../../services/LoginServices';
-import { setLoginUser } from '../../store/loginSlice';
+import { useLoginUserMutation } from '../../services/authServices';
+import { setLoginUser } from '../../store/authSlice';
 import { setCurrentUser } from '../../store/userSlice';
 
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<ILoginUser>();
   const dispatch = useAppDispatch();
-  const { data } = useGetAllUserQuery();
+  const { data } = useGetAllUsersQuery();
   const [requestLoginUser, { error }] = useLoginUserMutation();
 
   const onSubmit: SubmitHandler<ILoginUser> = (value: ILoginUser) => {

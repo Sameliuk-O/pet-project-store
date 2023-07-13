@@ -1,18 +1,17 @@
 import { NavLink } from 'react-router-dom';
 
-import ShoppingBox from '../../components/ShoppingBox/ShoppingBox';
-import UserAvatar from '../../components/UserAvatar/UserAvatar';
+import { UserAvatar } from 'components/UserAvatar';
+
+import { ShoppingBox } from '../../components/ShoppingBox';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setLoginUser } from '../../store/loginSlice';
+import { setLoginUser } from '../../store/authSlice';
 
 const PrivateLayout = () => {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
   const product = useAppSelector((state) => state.productCart);
 
   const handleLogOut = () => {
     dispatch(setLoginUser({ auth: false, token: '', username: '' }));
-    // navigate('/login');
   };
 
   return (

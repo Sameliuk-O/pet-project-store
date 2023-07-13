@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { ProductInBasket } from 'components/ProductInBasket';
+
 import { useAppSelector } from '../../hooks';
 import { IAddProductInBasket } from '../../interface';
-import ProductInBasket from '../ProductInBasket/ProductInBasket';
 
 interface PopupProps {
   onClose: () => void;
