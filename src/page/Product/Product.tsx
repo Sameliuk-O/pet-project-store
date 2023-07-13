@@ -4,6 +4,7 @@ import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { addProduct } from 'store/productSlice';
 
@@ -19,19 +20,19 @@ const Product: React.FC = () => {
   const date = dayjs().format('YYYY-MM-DD');
   const dispatch = useAppDispatch();
   const [requestAddProductCart, { isLoading, error }] = useAddProductCartMutation();
-  const productData = useGetProductCardQuery(productPath);
+  const { data: productData, isLoading: productLoading } = useGetProductCardQuery(productPath);
   const { id } = useAppSelector((state) => state.currentUser);
   const productsInCart = useAppSelector((state) => state.productCart);
   const [counter, setCounter] = useState(1);
   const [isProductInCart, setIsProductInCart] = useState(false);
   const handleClick = async () => {
-    if (productData.data) {
+    if (productData) {
       const res: {
         data?: IGetProduct;
         error?: FetchBaseQueryError | SerializedError;
       } = await requestAddProductCart({
         date: date,
-        products: { productId: productData.data.id, quantity: counter },
+        products: { productId: productData.id, quantity: counter },
         userId: id,
       });
       if (res && res.data) {
@@ -40,27 +41,47 @@ const Product: React.FC = () => {
             {
               date: date,
               productInfo: {
-                image: productData.data.image,
-                price: productData.data.price,
-                title: productData.data.title,
+                image: productData.image,
+                price: productData.price,
+                title: productData.title,
               },
-              products: { productId: productData.data.id, quantity: counter },
+              products: { productId: productData.id, quantity: counter },
               userId: id,
             },
           ])
         );
       } else {
-        console.log(res.error);
+        if (res.error && 'error' in res.error && res.error.error) {
+          toast.error(`${res.error.error}`, {
+            autoClose: 5000,
+            closeOnClick: true,
+            draggable: true,
+            hideProgressBar: false,
+            pauseOnHover: true,
+            position: 'bottom-right',
+            progress: undefined,
+            theme: 'light',
+          });
+        }
       }
     } else {
-      console.log(error);
+      if (error && 'error' in error && error.error) {
+        toast.error(`${error.error}`, {
+          autoClose: 5000,
+          closeOnClick: true,
+          draggable: true,
+          hideProgressBar: false,
+          pauseOnHover: true,
+          position: 'bottom-right',
+          progress: undefined,
+          theme: 'light',
+        });
+      }
     }
   };
 
   useEffect(() => {
-    const element = productsInCart?.product.find(
-      (el) => el.products.productId === productData?.data?.id
-    );
+    const element = productsInCart?.product.find((el) => el.products.productId === productData?.id);
     if (element) {
       setIsProductInCart(true);
     }
@@ -77,7 +98,7 @@ const Product: React.FC = () => {
 
   return (
     <div className="min-w-[80%]">
-      {productData.isLoading ? (
+      {productLoading ? (
         <Loading />
       ) : (
         <div className="mx-10 ">
@@ -87,26 +108,26 @@ const Product: React.FC = () => {
             </Link>
             <Link
               className="text-gray-400 underline"
-              to={`/store/category/${productData.data?.category}`}
+              to={`/store/category/${productData?.category}`}
             >
-              / {productData.data?.category}
+              / {productData?.category}
             </Link>
           </div>
           <div className="flex">
             <div className="p-5">
               <div className="p-10">
                 <img
-                  alt={productData.data?.title}
+                  alt={productData?.title}
                   className="m-auto max-h-96"
-                  src={productData.data?.image}
+                  src={productData?.image}
                 />
               </div>
             </div>
             <div className="ml-10 p-10">
-              <h1 className="pt-16 text-xl font-bold">{productData.data?.title}</h1>
-              <p className="max-w-sm pt-16 text-slate-500">{productData.data?.description}</p>
+              <h1 className="pt-16 text-xl font-bold">{productData?.title}</h1>
+              <p className="max-w-sm pt-16 text-slate-500">{productData?.description}</p>
               <div className="pt-5">
-                <Rating rating={productData.data?.rating.rate} />
+                <Rating rating={productData?.rating.rate} />
               </div>
               <div className="flex justify-center pt-10">
                 <button
@@ -137,7 +158,7 @@ const Product: React.FC = () => {
                         className="rounded-lg bg-sky-400 p-3 px-20 text-gray-50 hover:bg-sky-500"
                         onClick={handleClick}
                       >
-                        Buy now {Number(productData.data?.price) * counter}$
+                        Buy now {Number(productData?.price) * counter}$
                       </button>
                     )}
                   </div>

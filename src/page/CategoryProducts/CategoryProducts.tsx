@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import { ProductCard } from 'components/ProductCard';
 import { useLastPath } from 'hooks';
 import { useGetProductSameCategoryQuery } from 'services/productServices';
@@ -6,7 +8,20 @@ import { Loading } from '../../components/Loading';
 
 const CategoryProducts: React.FC = () => {
   const categoryPath = useLastPath();
-  const { data, isLoading } = useGetProductSameCategoryQuery(categoryPath);
+  const { data, isLoading, error } = useGetProductSameCategoryQuery(categoryPath);
+
+  if (error && 'error' in error && error.error) {
+    toast.error(`${error?.error}`, {
+      autoClose: 5000,
+      closeOnClick: true,
+      draggable: true,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      position: 'bottom-right',
+      progress: undefined,
+      theme: 'light',
+    });
+  }
 
   return (
     <div className="min-w-[80%]">

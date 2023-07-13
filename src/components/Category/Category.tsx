@@ -1,12 +1,26 @@
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useLastPath } from 'hooks';
 import { useGetAllCategoryQuery } from 'services/productServices';
 
 const Category: React.FC = () => {
-  const { data } = useGetAllCategoryQuery();
+  const { data, error } = useGetAllCategoryQuery();
   const categoryPath = useLastPath();
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));
+
+  if (error && 'error' in error && error.error) {
+    toast.error(`${error?.error}`, {
+      autoClose: 5000,
+      closeOnClick: true,
+      draggable: true,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      position: 'bottom-right',
+      progress: undefined,
+      theme: 'light',
+    });
+  }
 
   return (
     <div className="h-full">
