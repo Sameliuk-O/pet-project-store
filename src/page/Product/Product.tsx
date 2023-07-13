@@ -134,16 +134,18 @@ const Product: React.FC = () => {
                     <p>Product already in cart</p>
                   </div>
                 ) : (
-                  <button
-                    className="rounded-lg bg-sky-400 p-3 px-20 text-gray-50 hover:bg-sky-500"
-                    onClick={handleClick}
-                  >
+                  <div className="flex">
                     {isLoading ? (
-                      <div className="h-5 w-5 animate-spin rounded-full border-y-4 border-blue-500" />
+                      <div className="h-10 w-10 animate-spin rounded-full border-y-4 border-blue-500" />
                     ) : (
-                      `Buy now ${Number(productData.data?.price) * counter}$`
+                      <button
+                        className="rounded-lg bg-sky-400 p-3 px-20 text-gray-50 hover:bg-sky-500"
+                        onClick={handleClick}
+                      >
+                        Buy now {Number(productData.data?.price) * counter}$
+                      </button>
                     )}
-                  </button>
+                  </div>
                 )}
               </div>
             </div>
