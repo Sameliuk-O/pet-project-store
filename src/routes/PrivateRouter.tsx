@@ -5,14 +5,14 @@ import User from 'page/User/User';
 
 import { SideLayout } from '../layouts/SideLayout';
 import CategoryProducts from '../page/CategoryProducts/CategoryProducts';
-import HomePage from '../page/HomePage/HomePage';
+import HomePage from '../page/Home/HomePage';
 import Product from '../page/Product/Product';
 
 const PrivateRouter = () => {
   return (
     <>
       <PrivateLayout />
-      <div className="flex h-screen">
+      <div className="flex min-h-screen">
         <SideLayout />
         <Routes>
           <Route element={<HomePage />} path="/" />;

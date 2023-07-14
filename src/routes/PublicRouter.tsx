@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import LoginPage from 'page/LoginPage/LoginPage';
+import LoginPage from 'page/Login/LoginPage';
 const App: React.FC = () => {
   return (
     <Routes>

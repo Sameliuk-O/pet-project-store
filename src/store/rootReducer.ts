@@ -7,7 +7,6 @@ import { userServices } from 'services/usersServices';
 import loginReducer from './authSlice';
 import productSlice from './productSlice';
 import userReducer from './userSlice';
-// import { allCategoryApi } from '../services/AllCategoryServices';
 import { authApi } from '../services/authServices';
 import { productServices } from '../services/productServices';
 
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
   currentUser: userReducer,
   productCart: productSlice,
   [authApi.reducerPath]: authApi.reducer,
-  // [allCategoryApi.reducerPath]: allCategoryApi.reducer,
   [productServices.reducerPath]: productServices.reducer,
   [userServices.reducerPath]: userServices.reducer,
 });

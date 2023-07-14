@@ -4,20 +4,20 @@ import { IProduct } from 'interface';
 
 import { Rating } from '../Rating';
 
-const ProductCard: React.FC<IProduct> = ({ id, image, price, rating, title }: IProduct) => {
+const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
   const navigate = useNavigate();
   return (
     <li
       className="flex flex-col space-y-2 border-b-2 border-r-2 p-5 hover:bg-slate-50"
-      onClick={() => navigate(`/store/${id}`)}
+      onClick={() => navigate(`/store/${el.id}`)}
     >
-      <img alt={title} className="m-auto max-h-40" src={image} />
-      <p className="pt-3">{title.slice(0, 20)}...</p>
+      <img alt={el.title} className="m-auto max-h-40" src={el.image} />
+      <p className="pt-3">{el.title.slice(0, 20)}...</p>
       <div>
-        <Rating rating={rating.rate} />
+        <Rating rating={el.rating.rate} />
       </div>
       <div className="align-bottom">
-        <span className="float-right">{price}$</span>
+        <span className="float-right">{el.price}$</span>
       </div>
     </li>
   );

@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useLastPath } from 'hooks';
 import { useGetAllCategoryQuery } from 'services/productServices';
 
-const Category = () => {
-  const { data } = useGetAllCategoryQuery();
+const Category: React.FC = () => {
+  const { data, isError } = useGetAllCategoryQuery();
   const categoryPath = useLastPath();
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));
+
+  useEffect(() => {
+    if (isError === true) {
+      toast.error('Unable to get product categories');
+    }
+  }, [isError]);
 
   return (
     <div className="h-full">
