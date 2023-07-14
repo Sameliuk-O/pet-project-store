@@ -29,7 +29,7 @@ const ProductInBasket: React.FC<IProductInBasket> = ({ image, price, title, quan
         </p>
       </div>
       <div className="col-span-1 flex justify-center">
-        <p>Price: {price}</p>
+        <p>Price: {Number(price) * quantity}</p>
       </div>
       <div className="col-span-1 px-5">
         <button
