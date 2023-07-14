@@ -6,7 +6,7 @@ const User: React.FC = () => {
   const currentUser = useAppSelector((store) => store.currentUser);
   return (
     <div className="min-w-[80%]">
-      <div className="ml-10 mt-10">
+      <div className="mx-10 mt-10">
         <div className="flex">
           <div className="mr-10 rounded-full bg-amber-400 p-10">
             <p className="text-2xl font-medium uppercase">

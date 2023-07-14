@@ -19,8 +19,12 @@ const Product: React.FC = () => {
   const productPath = useLastPath();
   const date = dayjs().format('YYYY-MM-DD');
   const dispatch = useAppDispatch();
-  const [requestAddProductCart, { isLoading, error }] = useAddProductCartMutation();
-  const { data: productData, isLoading: productLoading } = useGetProductCardQuery(productPath);
+  const [requestAddProductCart, { isLoading, isError }] = useAddProductCartMutation();
+  const {
+    data: productData,
+    isLoading: productLoading,
+    isError: productIsError,
+  } = useGetProductCardQuery(productPath);
   const { id } = useAppSelector((state) => state.currentUser);
   const productsInCart = useAppSelector((state) => state.productCart);
   const [counter, setCounter] = useState(1);
@@ -50,32 +54,6 @@ const Product: React.FC = () => {
             },
           ])
         );
-      } else {
-        if (res.error && 'error' in res.error && res.error.error) {
-          toast.error(`${res.error.error}`, {
-            autoClose: 5000,
-            closeOnClick: true,
-            draggable: true,
-            hideProgressBar: false,
-            pauseOnHover: true,
-            position: 'bottom-right',
-            progress: undefined,
-            theme: 'light',
-          });
-        }
-      }
-    } else {
-      if (error && 'error' in error && error.error) {
-        toast.error(`${error.error}`, {
-          autoClose: 5000,
-          closeOnClick: true,
-          draggable: true,
-          hideProgressBar: false,
-          pauseOnHover: true,
-          position: 'bottom-right',
-          progress: undefined,
-          theme: 'light',
-        });
       }
     }
   };
@@ -86,8 +64,17 @@ const Product: React.FC = () => {
       setIsProductInCart(true);
     }
   }, [productsInCart?.product]);
-  const handleCounter = (value: string) => {
-    if (value === '+') {
+
+  useEffect(() => {
+    if (isError === true) {
+      toast('Failed to purchase product');
+    }
+    if (productIsError === true) {
+      toast('Unable to receive the product');
+    }
+  }, [isError, productIsError]);
+  const handleCounter = (value?: number) => {
+    if (value === 1) {
       setCounter((count) => count + 1);
     } else {
       if (counter > 1) {
@@ -132,14 +119,14 @@ const Product: React.FC = () => {
               <div className="flex justify-center pt-10">
                 <button
                   className="mr-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
-                  onClick={() => handleCounter('-')}
+                  onClick={() => handleCounter()}
                 >
                   -
                 </button>
                 <p className="py-1">{counter}</p>
                 <button
                   className="ml-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
-                  onClick={() => handleCounter('+')}
+                  onClick={() => handleCounter(1)}
                 >
                   +
                 </button>

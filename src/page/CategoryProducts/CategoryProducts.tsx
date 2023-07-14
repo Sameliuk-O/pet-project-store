@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { toast } from 'react-toastify';
 
 import { ProductCard } from 'components/ProductCard';
@@ -8,20 +10,12 @@ import { Loading } from '../../components/Loading';
 
 const CategoryProducts: React.FC = () => {
   const categoryPath = useLastPath();
-  const { data, isLoading, error } = useGetProductSameCategoryQuery(categoryPath);
-
-  if (error && 'error' in error && error.error) {
-    toast.error(`${error?.error}`, {
-      autoClose: 5000,
-      closeOnClick: true,
-      draggable: true,
-      hideProgressBar: false,
-      pauseOnHover: true,
-      position: 'bottom-right',
-      progress: undefined,
-      theme: 'light',
-    });
-  }
+  const { data, isLoading, isError } = useGetProductSameCategoryQuery(categoryPath);
+  useEffect(() => {
+    if (isError === true) {
+      toast('Unable to get product categories');
+    }
+  }, [isError]);
 
   return (
     <div className="min-w-[80%]">

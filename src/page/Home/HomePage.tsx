@@ -1,10 +1,20 @@
+import { useEffect } from 'react';
+
+import { toast } from 'react-toastify';
+
 import ProductCard from 'components/ProductCard/ProductCard';
 import { useGetAllProductQuery } from 'services/productServices';
 
 import { Loading } from '../../components/Loading';
 
 const HomePage: React.FC = () => {
-  const { data, isLoading } = useGetAllProductQuery();
+  const { data, isLoading, isError } = useGetAllProductQuery();
+
+  useEffect(() => {
+    if (isError === true) {
+      toast('Failed to get all items');
+    }
+  }, [isError]);
 
   return (
     <div className="min-w-[80%]">

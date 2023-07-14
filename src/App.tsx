@@ -16,18 +16,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <RoutesComponent />
-          <ToastContainer
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            position="bottom-right"
-            rtl={false}
-            theme="light"
-            closeOnClick
-            draggable
-            pauseOnFocusLoss
-            pauseOnHover
-          />
+          <ToastContainer autoClose={5000} position="bottom-right" />
         </BrowserRouter>
       </PersistGate>
     </Provider>
