@@ -85,9 +85,7 @@ const LoginForm: React.FC = () => {
                   {...register('username', { maxLength: 80, required: true })}
                   className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
                 />
-                {errors.password && (
-                  <p className="text-xs">This field has min length 5 and max 12.</p>
-                )}
+                {errors.password && <p className="text-xs">This field has min length max 80.</p>}
               </div>
               <div className="pt-3">
                 <label className="pr-7 text-base font-normal" htmlFor="password">
