@@ -4,3 +4,10 @@ export interface ILanding {
   image: string;
   title: string;
 }
+
+export interface IComment {
+  comment: string;
+  group: string;
+  index?: number;
+  userName: string;
+}
