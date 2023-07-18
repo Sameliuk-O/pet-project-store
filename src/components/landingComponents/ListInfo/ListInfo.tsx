@@ -2,7 +2,7 @@ import { ILanding } from '../../../interface/ILanding';
 
 const ListInfo = ({ ...props }: ILanding) => {
   return (
-    <div className="sm:px-7">
+    <div className="sm:px-7 md:px-14">
       <div className="flex justify-center ">
         <img alt={props.title} className="pb-10" src={props.image} />
       </div>
