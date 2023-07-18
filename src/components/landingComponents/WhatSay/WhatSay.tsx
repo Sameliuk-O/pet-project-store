@@ -21,14 +21,14 @@ const WhatSay = () => {
         <div className="container mx-auto ">
           <div className="mx-auto flex mobile:flex-col md:flex-row ">
             <div
-              className={`flex-1 bg-no-repeat pl-6 pr-16 mobile:z-10 mobile:-mb-10 mobile:bg-flags-small-svg mobile:pb-10 
-            mobile:pt-5 lg:z-0 lg:mb-0 lg:w-2/5 lg:bg-white lg:bg-flags-svg lg:pb-0 lg:pt-5`}
+              className={`flex-1 bg-no-repeat pl-6 mobile:z-10 mobile:-mb-10 mobile:bg-flags-small-svg mobile:pb-10 
+            mobile:pt-5 md:ml-9 md:mt-8 lg:z-0 lg:mb-0 lg:w-2/5 lg:bg-white lg:bg-flags-svg lg:pb-0 lg:pt-5 `}
             >
-              <p className="font-bold text-custom-orange mobile:w-52 mobile:text-custom-26/45 lg:w-screen lg:max-w-xs lg:text-custom-34/45">
+              <p className="font-bold text-custom-orange mobile:w-52 mobile:text-custom-26/45 md:pl-2 md:pt-6  lg:w-screen lg:max-w-xs lg:text-custom-34/45">
                 What Our Customers Say
               </p>
             </div>
-            <div className="flex flex-1 rounded bg-custom-orange py-56 mobile:z-0 mobile:hidden lg:z-10 lg:-ml-16 lg:mr-5 lg:mt-0 lg:flex lg:w-3/5 lg:py-56">
+            <div className="flex flex-1 rounded bg-custom-orange py-56 mobile:z-0 mobile:hidden lg:z-10 lg:-ml-56 lg:mr-5 lg:mt-0 lg:flex lg:w-3/5 lg:py-226px">
               {COMMENTS.map((el, index) => (
                 <Comment
                   comment={el.comment}
@@ -43,7 +43,7 @@ const WhatSay = () => {
         </div>
       </div>
       <div className="bg-gradient-right mobile:block lg:hidden">
-        <div className=" container ml-20 flex w-3/5 justify-end  rounded bg-custom-orange py-124px mobile:z-0">
+        <div className=" container ml-20 flex justify-end rounded  bg-custom-orange py-124px mobile:z-0 mobile:w-3/5 md:w-5/6 lg:w-3/5">
           {COMMENTS.map((el, index) => (
             <Comment
               comment={el.comment}
