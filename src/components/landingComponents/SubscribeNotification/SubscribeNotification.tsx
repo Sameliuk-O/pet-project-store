@@ -2,14 +2,16 @@ import { SubscribeNow } from '../SubscribeNow';
 
 const SubscribeNotification = () => {
   return (
-    <div className="container m-auto pb-72px text-center">
-      <p className="text-custom-48/60 font-bold text-custom-orange">
+    <div className="container m-auto pb-72px pt-20 text-center">
+      <p className="font-bold text-custom-orange mobile:text-custom-30/40 md:text-custom-48/60">
         Subscribe today and get notified first!
       </p>
-      <p className="pb-14 text-custom-34/45 font-medium text-custom-gray">
+      <p className="font-medium  text-custom-gray mobile:pb-11 mobile:text-custom-26/45 md:pb-14 md:text-custom-34/45">
         Product launch in: 12 days
       </p>
-      <SubscribeNow />
+      <div className="text-center">
+        <SubscribeNow />
+      </div>
     </div>
   );
 };

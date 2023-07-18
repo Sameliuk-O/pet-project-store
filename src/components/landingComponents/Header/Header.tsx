@@ -2,10 +2,12 @@ import { Navigation } from '../Navigation';
 
 const Header: React.FC = () => {
   return (
-    <div className="bg-custom-orange">
+    <div className="bg-custom-orange sm:px-20px">
       <div className="container mx-auto">
-        <div className="flex flex-row justify-between py-9">
-          <h1 className="font-sans text-2xl font-black uppercase leading-8 text-white">orange</h1>
+        <div className="mobile:flex-col mobile:pb-3.5 mobile:pt-6 mobile:text-center sm:flex-col sm:pb-3.5 sm:pt-6 sm:text-center md:flex md:flex-row md:justify-between md:px-10 md:py-9">
+          <h1 className="font-sans font-black uppercase leading-8 text-white mobile:pb-3.5 mobile:text-3xl sm:text-3xl md:text-4xl lg:text-2xl">
+            orange
+          </h1>
           <div className="flex-row-reverse space-x-4 space-x-reverse">
             <Navigation />
           </div>

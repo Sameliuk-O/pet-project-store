@@ -28,7 +28,7 @@ const ListsInfoBlock: React.FC = () => {
     },
   ];
   return (
-    <div className="container m-auto -mt-36 mb-24 flex rounded-2xl bg-white py-16 shadow-lg">
+    <div className="mb-24 flex rounded-2xl bg-white py-60px shadow-lg md:container mobile:mx-5 mobile:-mt-16 mobile:flex-col mobile:px-5 sm:-mt-14 sm:px-20px md:mx-auto md:-mt-32 md:flex-row md:px-0">
       {LISTS_INFO_ARRAY.map((el) => (
         <ListInfo description={el.description} image={el.image} key={el.id} title={el.title} />
       ))}
