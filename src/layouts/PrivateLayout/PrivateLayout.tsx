@@ -5,6 +5,7 @@ import { UserAvatar } from 'components/UserAvatar';
 import { ShoppingBox } from '../../components/ShoppingBox';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setLoginUser } from '../../store/authSlice';
+import { clearProduct } from '../../store/productSlice';
 
 const PrivateLayout: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,6 +13,7 @@ const PrivateLayout: React.FC = () => {
 
   const handleLogOut = () => {
     dispatch(setLoginUser({ auth: false, token: '', username: '' }));
+    dispatch(clearProduct());
   };
 
   return (
