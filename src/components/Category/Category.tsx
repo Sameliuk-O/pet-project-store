@@ -19,7 +19,7 @@ const Category: React.FC = () => {
 
   return (
     <div className="h-full">
-      <p className="pb-2 text-lg text-sky-500">Category</p>
+      <p className="pb-2 text-custom-18/36 text-sky-500">Category</p>
       <ul>
         {data?.map((el, index) => (
           <div key={el + index}>

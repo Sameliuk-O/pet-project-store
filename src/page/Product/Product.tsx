@@ -111,7 +111,7 @@ const Product: React.FC = () => {
               </div>
             </div>
             <div className="ml-10 p-10">
-              <h1 className="pt-16 text-xl font-bold">{productData?.title}</h1>
+              <p className="pt-16 text-xl font-bold">{productData?.title}</p>
               <p className="max-w-sm pt-16 text-slate-500">{productData?.description}</p>
               <div className="pt-5">
                 <Rating rating={productData?.rating.rate} />
