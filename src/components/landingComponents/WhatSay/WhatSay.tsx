@@ -19,10 +19,10 @@ const WhatSay = () => {
     <div>
       <div className="flex justify-center lg:bg-gradient-right ">
         <div className="container mx-auto ">
-          <div className="mx-auto flex mobile:flex-col md:flex-row ">
+          <div className="mx-auto flex mobile:flex-col mobile:pl-5 md:flex-row md:pl-0">
             <div
-              className={`flex-1 bg-no-repeat pl-6 mobile:z-10 mobile:-mb-10 mobile:bg-flags-small-svg mobile:pb-10 
-            mobile:pt-5 md:ml-9 md:mt-8 lg:z-0 lg:mb-0 lg:w-2/5 lg:bg-white lg:bg-flags-svg lg:pb-0 lg:pt-5 `}
+              className={`flex-1 bg-no-repeat pl-6 mobile:z-10 mobile:-mb-8 mobile:bg-flags-small-svg mobile:pb-10 
+            mobile:pt-7 md:ml-9 md:mt-8 lg:z-0 lg:mb-0 lg:w-2/5 lg:bg-white lg:bg-flags-svg lg:pb-0 lg:pt-5 `}
             >
               <p className="font-bold text-custom-orange mobile:w-52 mobile:text-custom-26/45 md:pl-2 md:pt-6  lg:w-screen lg:max-w-xs lg:text-custom-34/45">
                 What Our Customers Say

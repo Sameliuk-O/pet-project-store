@@ -6,10 +6,10 @@ const Navigation: React.FC = () => {
       <Link className="font-sans leading-8 text-white" to="/landing">
         Benefit
       </Link>
-      <Link className="pl-8 font-sans leading-8 text-white" to="/landing">
+      <Link className="pl-7 font-sans leading-8 text-white" to="/landing">
         Pricing
       </Link>
-      <Link className="pl-8 font-sans leading-8 text-white" to="/landing">
+      <Link className="pl-7 font-sans leading-8 text-white" to="/landing">
         Testimonials
       </Link>
     </div>

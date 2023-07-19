@@ -2,7 +2,7 @@ import { SubscribeNow } from '../SubscribeNow';
 
 const SubscribeNotification = () => {
   return (
-    <div className="container m-auto pb-140px pt-40 text-center">
+    <div className="container m-auto text-center mobile:pb-28 mobile:pt-106px md:pb-140px md:pt-40">
       <p className="font-bold text-custom-orange mobile:text-custom-30/40 md:text-custom-48/60">
         Subscribe today and get notified first!
       </p>
