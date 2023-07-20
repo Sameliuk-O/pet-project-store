@@ -13,7 +13,7 @@ import { useLoginUserMutation } from '../../services/authServices';
 import { setLoginUser } from '../../store/authSlice';
 import { setCurrentUser } from '../../store/userSlice';
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,

@@ -7,6 +7,9 @@ import { authApi } from '../services/authServices';
 import { productServices } from '../services/productServices';
 import { userServices } from '../services/usersServices';
 
+// Оголошуємо тип Store, що буде повертатися з configureStore
+export type AppStore = ReturnType<typeof configureStore>;
+
 const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     const customMiddleware = [
