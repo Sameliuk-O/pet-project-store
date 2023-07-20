@@ -1,14 +1,8 @@
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
-export default {
+module.exports = {
+  verbose: true,
   clearMocks: true,
-
   collectCoverage: true,
-
   coverageDirectory: 'coverage',
-
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
 };
