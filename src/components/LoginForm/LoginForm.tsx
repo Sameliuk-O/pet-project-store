@@ -92,7 +92,7 @@ const LoginForm = () => {
                 <p className="text-xs">This field has min length 5 and max 12.</p>
               )}
             </div>
-            <input type="submit" />
+            <input data-testid={'submit'} type="submit" />
           </form>
         </div>
       </div>
