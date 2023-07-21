@@ -8,8 +8,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import 'react-toastify/dist/ReactToastify.css';
 
 import RoutesComponent from './routes/RoutesComponent';
-import store, { persistor } from './store/store';
+import setupStore, { persistor } from './store/store';
 
+const store = setupStore({});
 function App() {
   return (
     <Provider store={store}>

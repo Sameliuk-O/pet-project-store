@@ -75,6 +75,7 @@
     "eslint-plugin-typescript-sort-keys": "^2.3.0",
     "jest": "^27.5.1",
     "lint-staged": "^13.2.2",
+    "msw": "^1.2.3",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",

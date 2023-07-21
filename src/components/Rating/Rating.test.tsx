@@ -15,3 +15,9 @@ test('check rating div 0', () => {
   const divElement = container.querySelector('div');
   expect(divElement).toBeInTheDocument();
 });
+
+test('check rating div -1', () => {
+  const { container } = render(<Rating rating="-1" />);
+  const divElement = container.querySelector('div');
+  expect(divElement).toBeInTheDocument();
+});
