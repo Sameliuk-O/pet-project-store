@@ -65,7 +65,7 @@ const LoginForm = () => {
       >
         <h1>Login</h1>
         <div className="flex justify-between">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form data-testid={'form'} onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="pr-4 text-base font-normal" htmlFor="username">
                 User Name

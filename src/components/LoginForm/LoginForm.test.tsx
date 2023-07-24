@@ -1,4 +1,4 @@
-import { fireEvent, getByText, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 
 import { renderWithProviders } from 'utils/test-utils';
@@ -52,36 +52,71 @@ describe('Login page', () => {
       return res(ctx.json(apiUsers));
     })
   );
+
+  const setup = () => {
+    const utils = renderWithProviders(<LoginForm />);
+    const input = screen.getByPlaceholderText('username') as HTMLInputElement;
+    const inputPassword = screen.getByPlaceholderText('password') as HTMLInputElement;
+    const inputSubmit = screen.getAllByRole('button') as HTMLElement[];
+    const form = screen.getByTestId('form');
+    return {
+      form,
+      input,
+      inputPassword,
+      inputSubmit,
+      ...utils,
+    };
+  };
+
   test('Text login in page', async () => {
     renderWithProviders(<LoginForm />);
     expect(screen.getByText(/Login/i)).toBeInTheDocument();
   });
 
-  test('Input username in screen', async () => {
+  test('Input username in screen', () => {
     renderWithProviders(<LoginForm />);
     const input = screen.getAllByPlaceholderText('username');
     waitFor(() => expect(input).toBeInTheDocument());
   });
-  test('Input username incorrect', async () => {
-    renderWithProviders(<LoginForm />);
-    const input = screen.getAllByPlaceholderText('username');
-    waitFor(() => expect(input).not.toBeInTheDocument());
-  });
-  test('Input password in screen', async () => {
+  test('Input password in screen', () => {
     renderWithProviders(<LoginForm />);
     const input = screen.getAllByPlaceholderText('password');
     waitFor(() => expect(input).toBeInTheDocument());
   });
-  test('submit form', async () => {
-    renderWithProviders(<LoginForm />);
-    const getButtonSubmit = screen.getByTestId('submit');
-    // const inputUserName = screen.queryByRole({
-    //   placeholder: 'username',
-    // }) as unknown as HTMLFormElement;
-    // const inputPassword = screen.getAllByPlaceholderText('password') as unknown as HTMLFormElement;
-    // fireEvent.change(inputUserName, { target: { value: 'johnd' } });
-    // fireEvent.change(inputPassword, { target: { value: 'm38rmF$' } });
-    const buttonSubmit = fireEvent.click(getButtonSubmit);
-    expect(buttonSubmit).toHaveBeenCalled();
+
+  test('submit form correct user name value', () => {
+    const { input } = setup();
+
+    fireEvent.change(input, { target: { value: apiUsers[0].username } });
+
+    expect(input.value).toBe('johnd');
+  });
+
+  test('submit form correct user password value', () => {
+    const { input } = setup();
+
+    fireEvent.change(input, { target: { value: apiUsers[0].password } });
+
+    expect(input.value).toBe('m38rmF$');
+  });
+
+  test('submit form incorrect user name and password value', async () => {
+    const { input, form, inputPassword } = setup();
+
+    fireEvent.change(input, { target: { value: '' } });
+    fireEvent.change(inputPassword, { target: { value: '' } });
+    fireEvent.submit(form);
+    await waitFor(() => {
+      expect(screen.getByText('This field has min length max 80.')).toBeInTheDocument();
+      expect(screen.getByText('This field has min length 5 and max 12.')).toBeInTheDocument();
+    });
+  });
+
+  test('submit form correct submit value user', () => {
+    const { input } = setup();
+
+    fireEvent.change(input, { target: { value: apiUsers[0].password } });
+
+    expect(input.value).toBe('m38rmF$');
   });
 });
