@@ -33,6 +33,7 @@ describe('Category', () => {
   test('Category in display', async () => {
     screen.debug();
     await waitFor(() => {
+      screen.debug();
       expect(screen.getByText('Electronics') as HTMLLinkElement).toBeInTheDocument();
       expect(screen.getByText('Jewelery') as HTMLLinkElement).toBeInTheDocument();
       expect(screen.getByText("Men's clothing") as HTMLLinkElement).toBeInTheDocument();

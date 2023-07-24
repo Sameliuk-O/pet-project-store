@@ -71,4 +71,7 @@ export const handlers = [
       );
     }
   }),
+  rest.get('/products/categories', (req, res, ctx) => {
+    return res(ctx.json(['electronics', 'jewelery', "men's clothing", "women's clothing"]));
+  }),
 ];
