@@ -124,7 +124,9 @@ const Product: React.FC = () => {
                 >
                   -
                 </button>
-                <p className="py-1">{counter}</p>
+                <p className="py-1" data-testid="counter">
+                  {counter}
+                </p>
                 <button
                   className="ml-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
                   onClick={() => handleCounter(1)}

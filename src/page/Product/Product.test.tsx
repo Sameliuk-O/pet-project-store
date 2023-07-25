@@ -1,4 +1,5 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 
 import Product from './Product';
@@ -105,7 +106,6 @@ describe('Product', () => {
   useDispatchMocked.mockReturnValue(mockProductCard);
 
   test('in display', () => {
-    screen.debug();
     const title = screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops');
     const info = screen.getByText(
       'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday'
@@ -122,5 +122,21 @@ describe('Product', () => {
       'src',
       'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'
     );
+  });
+  test('click + counter', async () => {
+    const plusButton = screen.getByText('+');
+    const counter = screen.getByTestId('counter');
+    await userEvent.click(plusButton);
+    await waitFor(() => {
+      expect(counter).toHaveTextContent('2');
+    });
+  });
+  test('click - counter', async () => {
+    const plusButton = screen.getByText('-');
+    const counter = screen.getByTestId('counter');
+    await userEvent.click(plusButton);
+    await waitFor(() => {
+      expect(counter).toHaveTextContent('1');
+    });
   });
 });
