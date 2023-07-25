@@ -9,6 +9,7 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
   return (
     <li
       className="flex flex-col space-y-2 border-b-2 border-r-2 p-5 hover:bg-slate-50"
+      data-testid="listId"
       onClick={() => navigate(`/store/${el.id}`)}
     >
       <img alt={el.title} className="m-auto max-h-40" src={el.image} />
