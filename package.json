@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --watch",
     "eject": "react-scripts eject"
   },
   "lint-staged": {
@@ -52,7 +52,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
     "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
     "@jest/globals": "^29.6.1",
     "@testing-library/dom": "^9.3.1",

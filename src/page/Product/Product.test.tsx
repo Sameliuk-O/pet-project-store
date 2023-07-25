@@ -1,7 +1,9 @@
 import { screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
+import product from './Product';
 import Product from './Product';
+import { useAppDispatch } from '../../hooks';
 import { useGetProductCardQuery } from '../../services/productServices';
 import { renderWithProviders } from '../../utils/test-utils';
 
@@ -18,20 +20,48 @@ const mockProduct = {
   },
   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
 };
-beforeEach(() => {
-  renderWithProviders(<Product />, { wrapper: BrowserRouter });
-});
+
+const mockProductCard = {
+  product: [
+    {
+      date: '2023-07-24',
+      productInfo: {
+        image: 'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg',
+        price: 55.99,
+        title: 'Mens Cotton Jacket',
+      },
+      products: {
+        productId: 3,
+        quantity: 1,
+      },
+      userId: 1,
+    },
+  ],
+};
 
 jest.mock('services/productServices.ts', () => ({
   useGetProductCardQuery: jest.fn(),
 }));
 
-describe('Product', () => {
+jest.mock('hooks', () => ({
+  useAppDispatch: jest.fn(),
+}));
+
+jest.mock('hooks', () => ({
+  useLastPath: jest.fn().mockReturnValue('string'),
+}));
+beforeEach(() => {
   const useGetProductCardQueryMock = useGetProductCardQuery as jest.Mock;
-  useGetProductCardQueryMock.mockReturnValue({
+  useGetProductCardQueryMock.mockReturnValueOnce({
     data: mockProduct,
-    refetch: jest.fn(),
   });
+  renderWithProviders(<Product />, { wrapper: BrowserRouter });
+});
+
+describe('Product', () => {
+  const useDispatchMocked = useAppDispatch as jest.Mock;
+  useDispatchMocked.mockReturnValue(jest.fn());
+  screen.debug();
   test('in display', async () => {
     const title = screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops');
     await expect(title).toBeInTheDocument();
