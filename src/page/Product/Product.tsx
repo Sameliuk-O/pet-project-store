@@ -106,6 +106,7 @@ const Product: React.FC = () => {
                 <img
                   alt={productData?.title}
                   className="m-auto max-h-96"
+                  data-testid="testIdImage"
                   src={productData?.image}
                 />
               </div>
