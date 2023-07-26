@@ -1,10 +1,9 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ShoppingBox } from './index';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { deleteProduct } from '../../store/productSlice';
 import { renderWithProviders } from '../../utils/test-utils';
 
 jest.mock('hooks', () => ({
@@ -41,7 +40,8 @@ beforeEach(() => {
 
 describe('Shopping box', () => {
   const useDispatchMocked = useAppDispatch as jest.Mock;
-  useDispatchMocked.mockImplementation(() => deleteProduct(3));
+  const mockDeleteProduct = jest.fn();
+  useDispatchMocked.mockReturnValue(mockDeleteProduct);
 
   test('in display', () => {
     const counter = screen.getByText('1');
@@ -57,8 +57,13 @@ describe('Shopping box', () => {
     expect(closePopup).toBeInTheDocument();
     const deleteButton = screen.getByRole('button', { name: 'Delete' });
     expect(deleteButton).toBeInTheDocument();
-    await userEvent.click(deleteButton);
-    await userEvent.click(closePopup);
-    expect(closePopup).not.toBeInTheDocument();
+    await waitFor(() => {
+      userEvent.click(deleteButton);
+      const notDelete = screen.queryByRole('button', { name: 'Delete' });
+      screen.debug();
+      expect(notDelete).toBe('null');
+      userEvent.click(closePopup);
+      expect(closePopup).not.toBeInTheDocument();
+    });
   });
 });
