@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import LinkBreadcrumbs from 'components/LinkBreadcrumbs';
 import { addProduct } from 'store/productSlice';
 
 import { Loading } from '../../components/Loading';
@@ -13,7 +13,6 @@ import { Rating } from '../../components/Rating';
 import { useAppDispatch, useAppSelector, useLastPath } from '../../hooks';
 import { IGetProduct } from '../../interface';
 import { useAddProductCartMutation, useGetProductCardQuery } from '../../services/productServices';
-import HomeSvg from '../../svg/homepage-icon.svg';
 
 const Product: React.FC = () => {
   const productPath = useLastPath();
@@ -82,24 +81,13 @@ const Product: React.FC = () => {
       }
     }
   };
-
   return (
     <div className="min-w-[80%]">
       {productLoading ? (
         <Loading />
       ) : (
         <div className="mx-10 ">
-          <div className="flex pl-5 pt-5">
-            <Link to="/">
-              <img alt="home page" className="py-1 pr-1" src={HomeSvg} />
-            </Link>
-            <Link
-              className="text-gray-400 underline"
-              to={`/store/category/${productData?.category}`}
-            >
-              / {productData?.category}
-            </Link>
-          </div>
+          <LinkBreadcrumbs title={productData?.title} value={productData?.category} />
           <div className="flex">
             <div className="p-5">
               <div className="p-10">

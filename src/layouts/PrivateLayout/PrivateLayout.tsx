@@ -18,14 +18,17 @@ const PrivateLayout: React.FC = () => {
 
   return (
     <div className="flex justify-between border-b-2 border-solid border-slate-300 bg-slate-200 p-5 pl-24 pr-10">
-      <NavLink className="flex items-center text-2xl font-bold text-zinc-700" to="/">
+      <NavLink
+        className="flex items-center text-2xl font-bold text-zinc-700 hover:text-sky-500"
+        to="/"
+      >
         STORE
       </NavLink>
       <div className="flex">
         <ShoppingBox counter={product.product.length} />
         <UserAvatar />
         <NavLink
-          className="ml-10 flex items-center rounded-lg bg-sky-400 p-1 px-5 text-sm text-stone-50"
+          className="ml-10 flex items-center rounded-lg bg-sky-400 p-1 px-5 text-sm text-stone-50 hover:bg-cyan-100 hover:text-sky-500"
           to="/login"
           onClick={handleLogOut}
         >

@@ -8,8 +8,8 @@ const UserAvatar: React.FC = () => {
 
   return (
     <NavLink to={'/user'}>
-      <div className="rounded-full bg-amber-400 px-5 py-3">
-        <p className="text-stone-50 first-letter:uppercase">{firstLaterUserName}</p>
+      <div className="rounded-full bg-amber-400 px-5 py-3 text-stone-50 hover:bg-cyan-100 hover:text-sky-500">
+        <p className=" first-letter:uppercase ">{firstLaterUserName}</p>
       </div>
     </NavLink>
   );

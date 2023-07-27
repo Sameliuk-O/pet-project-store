@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useLastPath } from 'hooks';
@@ -21,6 +21,11 @@ const Category: React.FC = () => {
     <div className="h-full">
       <p className="pb-2 text-custom-18/36 text-sky-500">Category</p>
       <ul>
+        <li className="pb-1 decoration-sky-500">
+          <NavLink className="hover:text-sky-500" to="/">
+            All categories
+          </NavLink>
+        </li>
         {data?.map((el, index) => (
           <div key={el + index}>
             {el === decodedString ? (
@@ -31,7 +36,9 @@ const Category: React.FC = () => {
               </li>
             ) : (
               <li className="pb-1 " key={el + index}>
-                <Link to={`/store/category/${el}`}>{el.charAt(0).toUpperCase() + el.slice(1)}</Link>
+                <Link className="hover:text-sky-500" to={`/store/category/${el}`}>
+                  {el.charAt(0).toUpperCase() + el.slice(1)}
+                </Link>
               </li>
             )}
           </div>
