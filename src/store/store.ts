@@ -35,6 +35,5 @@ export const persistor = persistStore(setupStore({}));
 export default setupStore;
 
 export type RootState = ReturnType<typeof rootReducer>;
-// export type AppDispatch = typeof store.dispatch;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];

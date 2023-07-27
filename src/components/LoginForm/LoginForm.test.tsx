@@ -113,18 +113,6 @@ describe('Login page', () => {
     });
   });
 
-  // test('submit form incorrect user name and password value', async () => {
-  //   const { input, form, inputPassword } = setup();
-  //
-  //   await userEvent.type(input, 'qwerty');
-  //   await userEvent.type(inputPassword, 'qwerty');
-  //   fireEvent.submit(form);
-  //   await waitFor(() => {
-  //     expect(screen.findByText('Username or password incorrect')).toBeInTheDOM();
-  //     // expect(screen.getByText('This field has min length 5 and max 12.')).toBeInTheDocument();
-  //   });
-  // });
-
   test('submit form correct submit value user', () => {
     const { input } = setup();
 

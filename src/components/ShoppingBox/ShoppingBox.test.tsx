@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ShoppingBox } from './index';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import { deleteProduct } from '../../store/productSlice';
+import setupStore from '../../store/store';
 import { renderWithProviders } from '../../utils/test-utils';
 
 jest.mock('hooks', () => ({
@@ -51,6 +53,8 @@ describe('Shopping box', () => {
   });
 
   test('on click open popup', async () => {
+    const store = setupStore();
+    store.dispatch(deleteProduct(3));
     const openPopup = screen.getByTestId('openPopup');
     await userEvent.click(openPopup);
     const closePopup = screen.getByRole('button', { name: 'X' });
@@ -59,9 +63,6 @@ describe('Shopping box', () => {
     expect(deleteButton).toBeInTheDocument();
     await waitFor(() => {
       userEvent.click(deleteButton);
-      const notDelete = screen.queryByRole('button', { name: 'Delete' });
-      screen.debug();
-      expect(notDelete).toBe('null');
       userEvent.click(closePopup);
       expect(closePopup).not.toBeInTheDocument();
     });

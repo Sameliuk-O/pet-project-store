@@ -10,7 +10,6 @@ const Category: React.FC = () => {
   const { data, isError } = useGetAllCategoryQuery();
   const categoryPath = useLastPath();
   const decodedString = decodeURIComponent(categoryPath.replace(/\+/g, ' '));
-
   useEffect(() => {
     if (isError === true) {
       toast.error('Unable to get product categories');

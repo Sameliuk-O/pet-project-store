@@ -15,7 +15,6 @@ const HomePage: React.FC = () => {
       toast('Failed to get all items');
     }
   }, [isError]);
-
   return (
     <div className="min-w-[80%]">
       {isLoading ? (
