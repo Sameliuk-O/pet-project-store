@@ -133,7 +133,7 @@ const Product: React.FC = () => {
                         className="rounded-lg bg-sky-400 p-3 px-20 text-gray-50 hover:bg-sky-500"
                         onClick={handleClick}
                       >
-                        Buy now {Number(productData?.price) * counter}$
+                        Buy now {(Number(productData?.price) * counter).toFixed(2)}$
                       </button>
                     )}
                   </div>
