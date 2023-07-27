@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -13,7 +14,7 @@ import { useLoginUserMutation } from '../../services/authServices';
 import { setLoginUser } from '../../store/authSlice';
 import { setCurrentUser } from '../../store/userSlice';
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -51,6 +52,19 @@ const LoginForm: React.FC = () => {
     }
   }, [isError]);
 
+  const renderErrorMessage = (value: string) => {
+    if (value) {
+      if (value === 'maxLength') {
+        return <p className="text-xs text-red-500">This field has max length 12.</p>;
+      } else if (value === 'minLength') {
+        return <p className="text-xs text-red-500">This field has min length 5.</p>;
+      } else if (value === 'required') {
+        return <p className="text-xs text-red-500">Enter your password.</p>;
+      }
+    }
+    return null;
+  };
+
   return (
     <>
       {isLoading ? (
@@ -65,7 +79,7 @@ const LoginForm: React.FC = () => {
       >
         <h1>Login</h1>
         <div className="flex justify-between">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form data-testid={'form'} onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label className="pr-4 text-base font-normal" htmlFor="username">
                 User Name
@@ -76,7 +90,7 @@ const LoginForm: React.FC = () => {
                 {...register('username', { maxLength: 80, required: true })}
                 className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
               />
-              {errors.password && <p className="text-xs">This field has min length max 80.</p>}
+              {errors.username && <p className="text-xs text-red-500">Enter your Username.</p>}
             </div>
             <div className="pt-3">
               <label className="pr-7 text-base font-normal" htmlFor="password">
@@ -88,11 +102,15 @@ const LoginForm: React.FC = () => {
                 {...register('password', { maxLength: 12, minLength: 5, required: true })}
                 className="rounded-lg border-2 border-gray-300 bg-gray-200 pl-2"
               />
-              {errors.password && (
-                <p className="text-xs">This field has min length 5 and max 12.</p>
-              )}
+              {errors.password && renderErrorMessage(errors.password?.type)}
             </div>
-            <input type="submit" />
+            <motion.input
+              className="mt-2 rounded-md border-2 border-gray-300 px-7 py-1.5 hover:bg-sky-500 hover:text-stone-50"
+              data-testid={'submit'}
+              transition={{ damping: 10, stiffness: 400, type: 'spring' }}
+              type="submit"
+              whileHover={{ scale: 1.1 }}
+            />
           </form>
         </div>
       </div>
