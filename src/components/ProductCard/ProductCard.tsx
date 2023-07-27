@@ -17,7 +17,7 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
         <Rating rating={el.rating.rate} />
       </div>
       <div className="align-bottom">
-        <span className="float-right">{el.price}$</span>
+        <span className="float-right">${el.price}</span>
       </div>
     </li>
   );
