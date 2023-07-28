@@ -43,10 +43,7 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
         </p>
       </div>
       {isPopupOpen && (
-        <div
-          className="fixed left-52 top-32 z-[1000] h-2/3 w-3/4 rounded-lg bg-stone-50 shadow-lg shadow-black drop-shadow-2xl"
-          ref={popupRef}
-        >
+        <div ref={popupRef}>
           <PopUpBasket onClose={closePopup} />
         </div>
       )}
