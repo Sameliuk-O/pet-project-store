@@ -81,7 +81,7 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
                     Checkout now
                   </button>
                   <div className="py-2">
-                    <strong>Total Price: {calculateTotalPrice()}</strong>
+                    <strong>Total Price: ${calculateTotalPrice()}</strong>
                   </div>
                 </div>
               )}
