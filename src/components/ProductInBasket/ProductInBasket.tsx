@@ -1,25 +1,50 @@
+import { useNavigate } from 'react-router-dom';
+
 import { deleteProduct } from 'store/productSlice';
 
 import { useAppDispatch } from '../../hooks';
 
 interface IProductInBasket {
+  category?: string;
+  closePopup: () => void;
   id: number;
   image?: string;
   price?: string;
   quantity: number;
   title?: string;
 }
-const ProductInBasket: React.FC<IProductInBasket> = ({ image, price, title, quantity, id }) => {
+const ProductInBasket: React.FC<IProductInBasket> = ({
+  image,
+  price,
+  title,
+  quantity,
+  id,
+  category,
+  closePopup,
+}) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleDeleteClick = (value: number) => {
     dispatch(deleteProduct(value));
   };
   return (
     <div className="grid grid-cols-7 items-center justify-between border-b-2 p-3">
-      <div className="col-span-1 flex justify-center">
+      <div
+        className="col-span-1 flex justify-center"
+        onClick={() => {
+          navigate(`/store/${category}/${id}`);
+          closePopup();
+        }}
+      >
         <img alt={title} className="h-20 w-24" src={image} />
       </div>
-      <div className="col-span-3 flex justify-center">
+      <div
+        className="col-span-3 flex justify-center"
+        onClick={() => {
+          navigate(`/store/${category}/${id}`);
+          closePopup();
+        }}
+      >
         <p className="px-5">{title}</p>
       </div>
       <div className="col-span-1 flex justify-center">
@@ -29,7 +54,7 @@ const ProductInBasket: React.FC<IProductInBasket> = ({ image, price, title, quan
         </p>
       </div>
       <div className="col-span-1 flex justify-center">
-        <p>Price: {(Number(price) * quantity).toFixed(2)}</p>
+        <p>Price: ${(Number(price) * quantity).toFixed(2)}</p>
       </div>
       <div className="col-span-1 px-5">
         <button
