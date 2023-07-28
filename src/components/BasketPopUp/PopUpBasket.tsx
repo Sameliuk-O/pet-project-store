@@ -12,6 +12,16 @@ interface PopupProps {
 const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
   const productCart = useAppSelector((state) => state.productCart);
 
+  const calculateTotalPrice = () => {
+    if (!productCart) return 0;
+
+    let totalPrice = 0;
+    productCart.product.forEach((el: IAddProductInBasket) => {
+      totalPrice += Number(el.productInfo?.price) * Number(el.products.quantity);
+    });
+    return totalPrice.toFixed(2);
+  };
+
   return (
     <div>
       <div>
@@ -28,6 +38,8 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
               {productCart && productCart.product.length > 0 ? (
                 productCart.product.map((el: IAddProductInBasket) => (
                   <ProductInBasket
+                    category={el.category}
+                    closePopup={onClose}
                     id={el.products.productId}
                     image={el.productInfo?.image}
                     key={el.products.productId}
@@ -38,6 +50,16 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
                 ))
               ) : (
                 <p>Your basket is empty</p>
+              )}
+              {productCart && productCart.product.length > 0 && (
+                <div className="mt-4 flex justify-around">
+                  <button className="rounded-lg bg-sky-400 px-10 py-2 text-stone-50 hover:bg-blue-200 hover:text-blue-600">
+                    Checkout now
+                  </button>
+                  <div className="py-2">
+                    <strong>Total Price: {calculateTotalPrice()}</strong>
+                  </div>
+                </div>
               )}
             </div>
           </div>

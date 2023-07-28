@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 
 import { PopUpBasket } from 'components/BasketPopUp';
 
@@ -10,6 +10,7 @@ interface ICounter {
 
 const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const popupRef = useRef<HTMLDivElement | null>(null);
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -18,6 +19,21 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
   const closePopup = () => {
     setIsPopupOpen(false);
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        closePopup();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick as unknown as EventListener);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick as unknown as EventListener);
+    };
+  }, []);
+
   return (
     <div className="cursor-pointer">
       <div className="relative mr-10" onClick={openPopup}>
@@ -27,11 +43,12 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
         </p>
       </div>
       {isPopupOpen && (
-        <>
-          <div className="fixed left-52 top-32 z-[1000] h-2/3 w-3/4 rounded-lg bg-stone-50 shadow-lg shadow-black drop-shadow-2xl">
-            <PopUpBasket onClose={closePopup} />
-          </div>
-        </>
+        <div
+          className="fixed left-52 top-32 z-[1000] h-2/3 w-3/4 rounded-lg bg-stone-50 shadow-lg shadow-black drop-shadow-2xl"
+          ref={popupRef}
+        >
+          <PopUpBasket onClose={closePopup} />
+        </div>
       )}
     </div>
   );
