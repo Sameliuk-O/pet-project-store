@@ -72,13 +72,12 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
         <div className="flex justify-between">
           <p className="my-auto">${Number(el.price).toFixed(2)}</p>
           <button
-            className={`rounded-full bg-sky-400 p-4 hover:bg-sky-200 ${
-              isProductInCart ? 'cursor-not-allowed opacity-50' : ''
+            className={`ml-4 rounded-full bg-sky-400 p-4 hover:bg-sky-200 ${
+              isProductInCart ? 'cursor-not-allowed opacity-20' : ''
             }`}
-            disabled={isProductInCart}
             onClick={(e) => handleClick(e)}
           >
-            {isProductInCart ? 'Bought' : <img alt="box" src={Shopping} />}
+            <img alt="box" src={Shopping} />
           </button>
         </div>
       </li>
