@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { ProductInBasket } from 'components/ProductInBasket';
 
@@ -11,6 +11,9 @@ interface PopupProps {
 
 const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
   const productCart = useAppSelector((state) => state.productCart);
+  const popupRef = useRef<HTMLDivElement>(null);
+  const [popupHeight, setPopupHeight] = useState<number>(0);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   const calculateTotalPrice = () => {
     if (!productCart) return 0;
@@ -21,17 +24,38 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
     });
     return totalPrice.toFixed(2);
   };
+  useEffect(() => {
+    if (popupRef.current) {
+      setPopupHeight(popupRef.current.scrollHeight);
+    }
+  }, [productCart]);
+
+  useEffect(() => {
+    if (productCart && productCart.product.length > 0) {
+      setShowPopup(true);
+    } else {
+      setShowPopup(false);
+    }
+  }, [productCart]);
 
   return (
     <div>
-      <div>
+      {showPopup && (
+        <div className="fixed inset-0 z-50 bg-black opacity-50" onClick={onClose}></div>
+      )}
+      <div
+        className={`fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-md bg-white shadow-lg transition-opacity${
+          showPopup ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ height: popupHeight + 60 }}
+      >
         <button
-          className="absolute -right-4 top-0 -mt-2 rounded-full bg-sky-400 p-1 px-3 text-white"
+          className="absolute right-0 top-0 rounded-full p-1 px-3 text-gray-600"
           onClick={onClose}
         >
           X
         </button>
-        <div className="p-10 pt-20">
+        <div className="p-10 pt-20" ref={popupRef}>
           <h1>Your shopping</h1>
           <div className="pt-10">
             <div className="max-h-96 overflow-y-auto p-10">

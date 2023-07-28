@@ -36,7 +36,8 @@ const ProductInBasket: React.FC<IProductInBasket> = ({
           closePopup();
         }}
       >
-        <img alt={title} className="h-20 w-24" src={image} />
+        {/*<img alt={title} className="h-20 w-24" src={image} />*/}
+        <img alt={title} src={image} />
       </div>
       <div
         className="col-span-3 flex justify-center"
