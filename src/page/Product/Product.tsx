@@ -61,6 +61,8 @@ const Product: React.FC = () => {
     const element = productsInCart?.product.find((el) => el.products.productId === productData?.id);
     if (element) {
       setIsProductInCart(true);
+    } else {
+      setIsProductInCart(false);
     }
   }, [productsInCart?.product]);
 
