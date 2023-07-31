@@ -30,23 +30,22 @@ const ProductInBasket: React.FC<IProductInBasket> = ({
   return (
     <div className="grid grid-cols-7 items-center justify-between border-b-2 p-3">
       <div
-        className="col-span-1 flex justify-center"
+        className="col-span-1 flex cursor-pointer justify-center"
         onClick={() => {
           navigate(`/store/${category}/${id}`);
           closePopup();
         }}
       >
-        {/*<img alt={title} className="h-20 w-24" src={image} />*/}
         <img alt={title} src={image} />
       </div>
       <div
-        className="col-span-3 flex justify-center"
+        className="col-span-3 flex cursor-pointer justify-center"
         onClick={() => {
           navigate(`/store/${category}/${id}`);
           closePopup();
         }}
       >
-        <p className="px-5">{title}</p>
+        <p className="px-5 hover:text-blue-600">{title}</p>
       </div>
       <div className="col-span-1 flex justify-center">
         <p className="pr-3">

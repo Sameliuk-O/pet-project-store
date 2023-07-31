@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { ProductInBasket } from 'components/ProductInBasket';
 
 import { useAppSelector } from '../../hooks';
@@ -56,8 +58,10 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
           X
         </button>
         <div className="p-10 pt-20" ref={popupRef}>
-          <h1>Your shopping</h1>
-          <div className="pt-10">
+          <h1 className="flex justify-center text-xl font-bold uppercase text-gray-400">
+            Your shopping card
+          </h1>
+          <div>
             <div className="max-h-96 overflow-y-auto p-10">
               {productCart && productCart.product.length > 0 ? (
                 productCart.product.map((el: IAddProductInBasket) => (
@@ -75,17 +79,22 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
               ) : (
                 <p>Your basket is empty</p>
               )}
-              {productCart && productCart.product.length > 0 && (
-                <div className="mt-4 flex justify-around">
-                  <button className="rounded-lg bg-sky-400 px-10 py-2 text-stone-50 hover:bg-blue-200 hover:text-blue-600">
-                    Checkout now
-                  </button>
-                  <div className="py-2">
-                    <strong>Total Price: ${calculateTotalPrice()}</strong>
-                  </div>
-                </div>
-              )}
             </div>
+          </div>
+          {productCart && productCart.product.length > 0 && (
+            <div className="mt-7 flex justify-around">
+              <button className="rounded-lg bg-sky-400 px-10 py-2 text-stone-50 hover:bg-blue-200 hover:text-blue-600">
+                Checkout now
+              </button>
+              <div className="py-2">
+                <strong>Total Price: ${calculateTotalPrice()}</strong>
+              </div>
+            </div>
+          )}
+          <div className="pt-10 text-lg font-medium text-gray-400 hover:text-blue-600">
+            <Link to={'/store'} onClick={onClose}>
+              Keep shopping
+            </Link>
           </div>
         </div>
       </div>

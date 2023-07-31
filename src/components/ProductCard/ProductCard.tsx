@@ -75,6 +75,7 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
             className={`ml-4 rounded-full bg-sky-400 p-4 hover:bg-sky-200 ${
               isProductInCart ? 'cursor-not-allowed opacity-20' : ''
             }`}
+            disabled={isProductInCart}
             onClick={(e) => handleClick(e)}
           >
             <img alt="box" src={Shopping} />
