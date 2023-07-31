@@ -108,7 +108,10 @@ const Product: React.FC = () => {
               </div>
               <div className="flex justify-center pt-10">
                 <button
-                  className="mr-10 rounded-lg bg-sky-400 px-10 py-1 text-gray-50 hover:bg-sky-500"
+                  className={`mr-10 rounded-lg px-10 py-1 text-gray-50 ${
+                    counter === 1 ? 'bg-sky-200' : 'bg-sky-400 hover:bg-sky-500'
+                  }`}
+                  disabled={counter === 1}
                   onClick={() => handleCounter()}
                 >
                   -

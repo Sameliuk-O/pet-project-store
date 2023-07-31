@@ -38,7 +38,7 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
 
   return (
     <div>
-      <div className="relative mr-10" onClick={openPopup}>
+      <div className="relative mr-10 cursor-pointer" onClick={openPopup}>
         <img alt="shopping" className="pt-3" src={Shopping} />
         <p className="absolute -right-3 top-0.5 rounded-lg bg-slate-300 px-1.5 py-0.5 text-xs opacity-30">
           {counter ? counter : 0}
