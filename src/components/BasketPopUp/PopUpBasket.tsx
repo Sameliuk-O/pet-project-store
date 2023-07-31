@@ -91,7 +91,7 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
               </div>
             </div>
           )}
-          <div className="pt-10 text-lg font-medium text-gray-400 hover:text-blue-600">
+          <div className="mt-10 text-lg font-medium text-gray-400 hover:text-blue-600">
             <Link to={'/store'} onClick={onClose}>
               Keep shopping
             </Link>
