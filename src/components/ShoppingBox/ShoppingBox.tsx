@@ -14,10 +14,12 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
 
   const openPopup = () => {
     setIsPopupOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closePopup = () => {
     setIsPopupOpen(false);
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const ShoppingBox: React.FC<ICounter> = ({ counter }) => {
   }, []);
 
   return (
-    <div className="cursor-pointer">
+    <div>
       <div className="relative mr-10" onClick={openPopup}>
         <img alt="shopping" className="pt-3" src={Shopping} />
         <p className="absolute -right-3 top-0.5 rounded-lg bg-slate-300 px-1.5 py-0.5 text-xs opacity-30">

@@ -104,13 +104,15 @@ const LoginForm = () => {
               />
               {errors.password && renderErrorMessage(errors.password?.type)}
             </div>
-            <motion.input
+            <motion.button
               className="mt-2 cursor-pointer rounded-md border-2 border-gray-300 px-7 py-1.5 hover:bg-sky-500 hover:text-stone-50"
               data-testid={'submit'}
               transition={{ damping: 10, stiffness: 400, type: 'spring' }}
               type="submit"
               whileHover={{ scale: 1.1 }}
-            />
+            >
+              Submit
+            </motion.button>
           </form>
         </div>
       </div>
