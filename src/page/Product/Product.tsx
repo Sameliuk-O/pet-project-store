@@ -27,32 +27,36 @@ const Product: React.FC = () => {
   const { id } = useAppSelector((state) => state.currentUser);
   const productsInCart = useAppSelector((state) => state.productCart);
   const [counter, setCounter] = useState(1);
-  const [isProductInCart, setIsProductInCart] = useState(false);
+  const [isProductInCart, setIsProductInCart] = useState(true);
+
   const handleClick = async () => {
-    if (productData) {
-      const res: {
-        data?: IGetProduct;
-        error?: FetchBaseQueryError | SerializedError;
-      } = await requestAddProductCart({
-        date: date,
-        products: { productId: productData.id, quantity: counter },
-        userId: id,
-      });
-      if (res && res.data) {
-        await dispatch(
-          addProduct([
-            {
-              date: date,
-              productInfo: {
-                image: productData.image,
-                price: productData.price,
-                title: productData.title,
+    if (!isProductInCart) {
+      setIsProductInCart(true);
+      if (productData) {
+        const res: {
+          data?: IGetProduct;
+          error?: FetchBaseQueryError | SerializedError;
+        } = await requestAddProductCart({
+          date: date,
+          products: { productId: productData.id, quantity: counter },
+          userId: id,
+        });
+        if (res && res.data) {
+          await dispatch(
+            addProduct([
+              {
+                date: date,
+                productInfo: {
+                  image: productData.image,
+                  price: productData.price,
+                  title: productData.title,
+                },
+                products: { productId: productData.id, quantity: counter },
+                userId: id,
               },
-              products: { productId: productData.id, quantity: counter },
-              userId: id,
-            },
-          ])
-        );
+            ])
+          );
+        }
       }
     }
   };
@@ -64,7 +68,7 @@ const Product: React.FC = () => {
     } else {
       setIsProductInCart(false);
     }
-  }, [productsInCart?.product]);
+  }, [productsInCart?.product, productData?.id]);
 
   useEffect(() => {
     if (isError === true) {
@@ -136,6 +140,7 @@ const Product: React.FC = () => {
                     ) : (
                       <button
                         className="rounded-lg bg-sky-400 p-3 px-20 text-gray-50 hover:bg-sky-500"
+                        disabled={isProductInCart}
                         onClick={handleClick}
                       >
                         Buy now ${(Number(productData?.price) * counter).toFixed(2)}

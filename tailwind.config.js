@@ -5,6 +5,9 @@ module.exports = {
       screens: {
         mobile: '375px',
       },
+      fontFamily: {
+        display: ['Roboto'],
+      },
       backgroundSize: {
         '50%': '50%',
         '100%': '100%',

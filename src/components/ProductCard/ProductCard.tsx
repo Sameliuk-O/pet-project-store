@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
@@ -18,35 +18,37 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
   const dispatch = useAppDispatch();
   const { id } = useAppSelector((state) => state.currentUser);
   const productsInCart = useAppSelector((state) => state.productCart);
-  const [requestAddProductCart] = useAddProductCartMutation();
+  const [requestAddProductCart, { isLoading }] = useAddProductCartMutation();
   const date = dayjs().format('YYYY-MM-DD');
   const [isProductInCart, setIsProductInCart] = useState(false);
-
   const handleClick = async (e: React.SyntheticEvent<EventTarget>) => {
-    e.stopPropagation();
-    const res: {
-      data?: IGetProduct;
-      error?: FetchBaseQueryError | SerializedError;
-    } = await requestAddProductCart({
-      date: date,
-      products: { productId: el.id, quantity: 1 },
-      userId: id,
-    });
-    if (res && res.data) {
-      await dispatch(
-        addProduct([
-          {
-            date: date,
-            productInfo: {
-              image: el.image,
-              price: el.price,
-              title: el.title,
+    if (!isProductInCart) {
+      setIsProductInCart(true);
+      e.stopPropagation();
+      const res: {
+        data?: IGetProduct;
+        error?: FetchBaseQueryError | SerializedError;
+      } = await requestAddProductCart({
+        date: date,
+        products: { productId: el.id, quantity: 1 },
+        userId: id,
+      });
+      if (res && res.data) {
+        await dispatch(
+          addProduct([
+            {
+              date: date,
+              productInfo: {
+                image: el.image,
+                price: el.price,
+                title: el.title,
+              },
+              products: { productId: el.id, quantity: 1 },
+              userId: id,
             },
-            products: { productId: el.id, quantity: 1 },
-            userId: id,
-          },
-        ])
-      );
+          ])
+        );
+      }
     }
   };
   useEffect(() => {
@@ -61,8 +63,10 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
   return (
     <>
       <li
-        className="flex cursor-pointer flex-col space-y-2 border-b-2 border-r-2 p-5 hover:bg-slate-50"
-        onClick={() => navigate(`/store/${el.category}/${el.id}`)}
+        className={`relative flex cursor-pointer flex-col space-y-2 border-b-2 border-r-2 p-5 hover:bg-slate-50 ${
+          isLoading ? 'opacity-20' : 'opacity-100'
+        }`}
+        onClick={() => (!isLoading ? navigate(`/store/${el.category}/${el.id}`) : null)}
       >
         <img alt={el.title} className="m-auto max-h-40" src={el.image} />
         <p className="pt-3">{el.title.slice(0, 20)}...</p>
@@ -81,6 +85,11 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
             <img alt="box" src={Shopping} />
           </button>
         </div>
+        {isLoading ? (
+          <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 opacity-100">
+            <div className="h-10 w-10 animate-spin rounded-full border-y-4 border-blue-500" />
+          </div>
+        ) : null}
       </li>
     </>
   );

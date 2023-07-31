@@ -59,7 +59,7 @@ const PopUpBasket: React.FC<PopupProps> = ({ onClose }) => {
         </button>
         <div className="p-10 pt-20" ref={popupRef}>
           <h1 className="flex justify-center text-xl font-bold uppercase text-gray-400">
-            Your shopping card
+            Your shopping cart
           </h1>
           <div>
             <div className="max-h-96 overflow-y-auto p-10">
