@@ -68,7 +68,7 @@ const Product: React.FC = () => {
     } else {
       setIsProductInCart(false);
     }
-  }, [productsInCart?.product]);
+  }, [productsInCart?.product, productData?.id]);
 
   useEffect(() => {
     if (isError === true) {

@@ -21,7 +21,6 @@ const ProductCard: React.FC<IProduct> = ({ ...el }: IProduct) => {
   const [requestAddProductCart, { isLoading }] = useAddProductCartMutation();
   const date = dayjs().format('YYYY-MM-DD');
   const [isProductInCart, setIsProductInCart] = useState(false);
-  console.log(isLoading);
   const handleClick = async (e: React.SyntheticEvent<EventTarget>) => {
     if (!isProductInCart) {
       setIsProductInCart(true);
