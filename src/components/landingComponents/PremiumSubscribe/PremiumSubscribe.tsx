@@ -16,9 +16,9 @@ const PremiumSubscribe: React.FC = () => {
           src={ORANGE_PHONE}
         />
         <div className="flex-1 mobile:px-6 mobile:pb-24 mobile:text-center md:pb-118px md:pr-10 md:pt-16 lg:pb-274px lg:text-right">
-          <p className=" font-bold text-custom-orange mobile:pb-2 mobile:text-custom-30/40 md:pb-4 lg:pb-4 lg:text-custom-48/60">
+          <h2 className=" font-bold text-custom-orange mobile:pb-2 mobile:text-custom-30/40 md:pb-4 lg:pb-4 lg:text-custom-48/60">
             It tastes like Premium.
-          </p>
+          </h2>
           <p className="pb-5 font-bold text-dark-blue mobile:text-custom-26/45 md:text-custom-34/45">
             Better than an apple.
           </p>
