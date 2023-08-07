@@ -2,19 +2,15 @@ import {
   ArcElement,
   BarElement,
   CategoryScale,
-  // ChartData,
-  // ChartDataset,
   Chart as ChartJS,
   Legend,
   LinearScale,
   LineElement,
-  // Point,
   PointElement,
   Title,
   Tooltip,
 } from 'chart.js';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
-// ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 ChartJS.register(
   CategoryScale,
   LinearScale,
